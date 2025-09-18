@@ -170,17 +170,17 @@ const Index = ({ showLevelUpPopup, setShowLevelUpPopup }: IndexProps) => {
 
 
         {/* Compete Section */}
-        <section id="compete-section" className="space-y-8">
+        <section id="compete-section" className="space-y-8 max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center">Join the Competition</h2>
           
           {/* Join Contest */}
-          <Card className="w-full shadow-medium">
+          <Card className="w-full shadow-medium max-w-6xl mx-auto">
             <CardContent className="p-6">
-              <div className="flex items-center justify-between w-full gap-6">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 
                 {/* Contest Details & Category - Full Left */}
-                <div className="flex items-center space-x-6">
-                  <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 flex-1">
+                  <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0">
                     <Trophy className="h-6 w-6 text-primary" />
                     <div>
                       <h3 className="font-semibold">Next Contest</h3>
@@ -189,9 +189,9 @@ const Index = ({ showLevelUpPopup, setShowLevelUpPopup }: IndexProps) => {
                   </div>
 
                   {/* Category Selection */}
-                  <div className="min-w-60">
+                  <div className="w-full sm:w-80 lg:w-96">
                     <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                      <SelectTrigger>
+                      <SelectTrigger className="w-full">
                         <SelectValue placeholder="Choose your expertise area" />
                       </SelectTrigger>
                       <SelectContent>
@@ -205,14 +205,16 @@ const Index = ({ showLevelUpPopup, setShowLevelUpPopup }: IndexProps) => {
                   </div>
                 </div>
 
-                {/* Join Button - Full Right */}
-                <Button 
-                  onClick={handleJoinContest} 
-                  disabled={!selectedCategory}
-                  className="bg-gradient-primary hover:opacity-90 transition-smooth"
-                >
-                  Join Contest
-                </Button>
+                {/* Join Button - Right */}
+                <div className="flex-shrink-0">
+                  <Button 
+                    onClick={handleJoinContest} 
+                    disabled={!selectedCategory}
+                    className="bg-gradient-primary hover:opacity-90 transition-smooth w-full sm:w-auto px-8"
+                  >
+                    Join Contest
+                  </Button>
+                </div>
               </div>
 
               {showInstructions && (
