@@ -53,10 +53,14 @@ const topProducts = [
   }
 ];
 
-const Index = () => {
+interface IndexProps {
+  showLevelUpPopup: boolean;
+  setShowLevelUpPopup: (show: boolean) => void;
+}
+
+const Index = ({ showLevelUpPopup, setShowLevelUpPopup }: IndexProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [showInstructions, setShowInstructions] = useState(false);
-  const [showLevelUpPopup, setShowLevelUpPopup] = useState(false);
   const navigate = useNavigate();
 
   // User stats data
@@ -69,10 +73,6 @@ const Index = () => {
   const handleJoinContest = () => {
     if (!selectedCategory) return;
     setShowInstructions(true);
-  };
-
-  const handleLevelUpClick = () => {
-    setShowLevelUpPopup(true);
   };
 
   const handleCloseLevelUp = () => {
@@ -167,25 +167,6 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-subtle">
       <div className="container mx-auto px-6 py-8 space-y-12">
         
-        {/* Main Action Buttons */}
-        <section className="text-center py-8">          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              onClick={() => document.getElementById('compete-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-gradient-primary hover:opacity-90 transition-smooth"
-            >
-              Compete
-            </Button>
-            
-            <Button 
-              onClick={handleLevelUpClick}
-              variant="outline"
-              className="hover:bg-primary hover:text-primary-foreground transition-smooth"
-            >
-              Level Up
-            </Button>
-          </div>
-        </section>
 
 
         {/* Compete Section */}
