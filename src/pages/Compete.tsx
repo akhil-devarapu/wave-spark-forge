@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Trophy, Medal, Award, ArrowRight, Calendar, Users } from "lucide-react";
+import { Trophy, Medal, Award, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const categories = [
@@ -61,7 +61,7 @@ export default function Compete() {
       <div className="container mx-auto px-6 py-8 space-y-12">
         
         {/* Join Contest Section */}
-        <section className="space-y-6">
+        <section className="space-y-8 max-w-7xl mx-auto">
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold">Join the Competition</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -69,50 +69,52 @@ export default function Compete() {
             </p>
           </div>
 
-          <Card className="max-w-2xl mx-auto shadow-medium">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Trophy className="h-5 w-5 text-primary" />
-                <span>Next Contest</span>
-              </CardTitle>
-              <CardDescription>Choose your category and join the competition</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex items-center space-x-4 p-4 bg-muted/50 rounded-lg">
-                <Calendar className="h-5 w-5 text-primary" />
-                <div>
-                  <p className="font-medium">Contest Date</p>
-                  <p className="text-sm text-muted-foreground">December 15, 2024 - January 15, 2025</p>
+          {/* Join Contest */}
+          <Card className="w-full shadow-medium max-w-6xl mx-auto">
+            <CardContent className="p-6">
+              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                
+                {/* Contest Details & Category - Full Left */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 flex-1">
+                  <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0">
+                    <Trophy className="h-6 w-6 text-primary" />
+                    <div>
+                      <h3 className="font-semibold">Next Contest</h3>
+                      <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
+                    </div>
+                  </div>
+
+                  {/* Category Selection */}
+                  <div className="w-full sm:w-80 lg:w-96">
+                    <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Choose your expertise area" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {categories.map((category) => (
+                          <SelectItem key={category} value={category}>
+                            {category}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+
+                {/* Join Button - Right */}
+                <div className="flex-shrink-0">
+                  <Button 
+                    onClick={handleJoinContest} 
+                    disabled={!selectedCategory}
+                    className="bg-gradient-primary hover:opacity-90 transition-smooth w-full sm:w-auto px-8"
+                  >
+                    Join Contest
+                  </Button>
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <label className="text-sm font-medium">Select Category</label>
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose your expertise area" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <Button 
-                onClick={handleJoinContest} 
-                disabled={!selectedCategory}
-                className="w-full bg-gradient-primary hover:opacity-90 transition-smooth"
-              >
-                Join Contest
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-
               {showInstructions && (
-                <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
                   <h4 className="font-medium mb-2">Contest Instructions</h4>
                   <ul className="text-sm space-y-1 text-muted-foreground">
                     <li>• Build an innovative AI solution in your chosen category</li>
@@ -130,13 +132,13 @@ export default function Compete() {
         </section>
 
         {/* Leaderboard Section */}
-        <section className="space-y-6">
+        <section className="space-y-6 max-w-7xl mx-auto">
           <div className="text-center">
             <h2 className="text-3xl font-bold mb-2">Leaderboard</h2>
             <p className="text-muted-foreground">Top performers in our AI community</p>
           </div>
 
-          <Card className="shadow-medium">
+          <Card className="shadow-medium max-w-4xl mx-auto">
             <CardContent className="p-0">
               <div className="space-y-0">
                 {leaderboard.map((user, index) => (
@@ -172,7 +174,7 @@ export default function Compete() {
         </section>
 
         {/* Top Products Section */}
-        <section className="space-y-6">
+        <section className="space-y-6 max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-3xl font-bold mb-2">Top Products</h2>
