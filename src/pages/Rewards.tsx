@@ -7,16 +7,6 @@ import { toast } from "sonner";
 
 const rewards = [
   {
-    id: 1,
-    title: "Level 1 Certificate",
-    description: "Full Stack + Custom GPT",
-    type: "certificate",
-    status: "earned",
-    points: 500,
-    earnedDate: "2024-11-15",
-    icon: "📜"
-  },
-  {
     id: 2,
     title: "Level 2 Gift Vouchers",
     description: "Effective Prompts + AI Tools",
@@ -25,25 +15,6 @@ const rewards = [
     points: 750,
     earnedDate: "2024-12-01",
     icon: "🎁"
-  },
-  {
-    id: 3,
-    title: "Level 2 Certificate",
-    description: "Effective Prompts + AI Tools",
-    type: "certificate",
-    status: "earned", 
-    points: 750,
-    earnedDate: "2024-12-01",
-    icon: "📜"
-  },
-  {
-    id: 4,
-    title: "Level 3 Certificate",
-    description: "Automations",
-    type: "certificate",
-    status: "in-progress",
-    points: 1200,
-    progress: 60
   },
   {
     id: 5,
@@ -228,7 +199,7 @@ export default function Rewards() {
                           <Gift className="h-4 w-4 mr-1" />
                           Claim
                         </Button>
-                        {reward.type === "certificate" && (
+                        {reward.type === "voucher" && (
                           <Button 
                             size="sm" 
                             variant="ghost"
