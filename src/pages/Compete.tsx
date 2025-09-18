@@ -57,37 +57,44 @@ export default function Compete() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-6 py-8 space-y-12">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-6 py-12 space-y-16">
         
         {/* Compete Section */}
-        <section className="space-y-8 max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center">Join the Competition</h2>
+        <section className="space-y-12 max-w-7xl mx-auto">
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl font-bold text-foreground">Join the Competition</h1>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Showcase your AI expertise and compete with the best minds in the community
+            </p>
+          </div>
           
           {/* Join Contest */}
-          <Card className="w-full shadow-medium max-w-6xl mx-auto">
-            <CardContent className="p-6">
+          <Card className="w-full shadow-large max-w-6xl mx-auto rounded-2xl border-0">
+            <CardContent className="p-8">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 
                 {/* Contest Details & Category - Full Left */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 flex-1">
-                  <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0">
-                    <Trophy className="h-6 w-6 text-primary" />
+                  <div className="flex items-center space-x-6 bg-muted/30 rounded-xl p-6 flex-shrink-0">
+                    <div className="bg-primary/10 p-3 rounded-xl">
+                      <Trophy className="h-8 w-8 text-primary" />
+                    </div>
                     <div>
-                      <h3 className="font-semibold">Next Contest</h3>
-                      <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
+                      <h3 className="text-lg font-semibold">Next Contest</h3>
+                      <p className="text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
                     </div>
                   </div>
 
                   {/* Category Selection */}
                   <div className="w-full sm:w-80 lg:w-96">
                     <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full h-12 rounded-xl border-border">
                         <SelectValue placeholder="Choose your expertise area" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="rounded-xl">
                         {categories.map((category) => (
-                          <SelectItem key={category} value={category}>
+                          <SelectItem key={category} value={category} className="rounded-lg">
                             {category}
                           </SelectItem>
                         ))}
@@ -101,7 +108,7 @@ export default function Compete() {
                   <Button 
                     onClick={handleJoinContest} 
                     disabled={!selectedCategory}
-                    className="bg-gradient-primary hover:opacity-90 transition-smooth w-full sm:w-auto px-8"
+                    className="bg-primary hover:bg-primary/90 transition-smooth w-full sm:w-auto px-8 h-12 rounded-xl font-medium"
                   >
                     Join Contest
                   </Button>
@@ -109,15 +116,27 @@ export default function Compete() {
               </div>
 
               {showInstructions && (
-                <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                  <h4 className="font-medium mb-2">Contest Instructions</h4>
-                  <ul className="text-sm space-y-1 text-muted-foreground">
-                    <li>• Build an innovative AI solution in your chosen category</li>
-                    <li>• Submit before the deadline with proper documentation</li>
-                    <li>• Projects will be judged on innovation, impact, and technical excellence</li>
-                    <li>• Winners receive points, certificates, and exclusive rewards</li>
+                <div className="mt-8 p-6 bg-primary/5 rounded-xl border border-primary/10">
+                  <h4 className="font-semibold mb-4 text-lg">Contest Instructions</h4>
+                  <ul className="space-y-3 text-muted-foreground">
+                    <li className="flex items-start space-x-2">
+                      <span className="text-primary">•</span>
+                      <span>Build an innovative AI solution in your chosen category</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className="text-primary">•</span>
+                      <span>Submit before the deadline with proper documentation</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className="text-primary">•</span>
+                      <span>Projects will be judged on innovation, impact, and technical excellence</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className="text-primary">•</span>
+                      <span>Winners receive points, certificates, and exclusive rewards</span>
+                    </li>
                   </ul>
-                  <Button className="mt-3 w-full" size="sm">
+                  <Button className="mt-6 w-full h-12 rounded-xl" size="sm">
                     Confirm Participation
                   </Button>
                 </div>
@@ -126,38 +145,38 @@ export default function Compete() {
           </Card>
 
           {/* Leaderboard */}
-          <div className="space-y-6">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-2">Leaderboard</h3>
-              <p className="text-muted-foreground">AI power users in leader board</p>
+          <div className="space-y-8">
+            <div className="text-center space-y-2">
+              <h2 className="text-3xl font-bold">Leaderboard</h2>
+              <p className="text-lg text-muted-foreground">AI power users in leader board</p>
             </div>
 
-            <Card className="shadow-medium max-w-4xl mx-auto">
+            <Card className="shadow-large max-w-4xl mx-auto rounded-2xl border-0">
               <CardContent className="p-0">
                 <div className="space-y-0">
                   {leaderboard.map((user, index) => (
                     <div 
                       key={user.name}
-                      className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-smooth ${
-                        index < leaderboard.length - 1 ? 'border-b' : ''
+                      className={`flex items-center justify-between p-6 hover:bg-muted/20 transition-smooth ${
+                        index < leaderboard.length - 1 ? 'border-b border-border/50' : ''
                       }`}
                     >
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary text-white font-bold">
+                      <div className="flex items-center space-x-6">
+                        <div className="flex items-center justify-center w-12 h-12 rounded-2xl bg-primary text-white font-bold">
                           {user.rank <= 3 ? (
-                            user.rank === 1 ? <Trophy className="h-5 w-5" /> :
-                            user.rank === 2 ? <Medal className="h-5 w-5" /> :
-                            <Award className="h-5 w-5" />
+                            user.rank === 1 ? <Trophy className="h-6 w-6" /> :
+                            user.rank === 2 ? <Medal className="h-6 w-6" /> :
+                            <Award className="h-6 w-6" />
                           ) : (
                             user.rank
                           )}
                         </div>
                         <div>
-                          <p className="font-medium">{user.name}</p>
-                          <p className="text-sm text-muted-foreground">{user.projects} projects</p>
+                          <p className="font-semibold text-lg">{user.name}</p>
+                          <p className="text-muted-foreground">{user.projects} projects</p>
                         </div>
                       </div>
-                      <Badge variant="secondary" className="text-lg font-bold px-3 py-1">
+                      <Badge variant="secondary" className="text-xl font-bold px-4 py-2 rounded-xl">
                         {user.score.toLocaleString()}
                       </Badge>
                     </div>
@@ -168,31 +187,33 @@ export default function Compete() {
           </div>
 
           {/* Top Products */}
-          <div className="space-y-6">
+          <div className="space-y-8">
             <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-2xl font-bold mb-2">Top Products</h3>
-                <p className="text-muted-foreground">Outstanding AI solutions from our community</p>
+              <div className="space-y-2">
+                <h2 className="text-3xl font-bold">Top Products</h2>
+                <p className="text-lg text-muted-foreground">Outstanding AI solutions from our community</p>
               </div>
               <Link to="/products">
-                <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground transition-smooth">
+                <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground transition-smooth h-12 px-6 rounded-xl">
                   See More
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
               </Link>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-8">
               {topProducts.map((product) => (
-                <Card key={product.id} className="hover:shadow-glow transition-smooth cursor-pointer">
-                  <CardContent className="p-6">
-                    <div className="text-center space-y-4">
-                      <div className="text-4xl mb-4">{product.image}</div>
+                <Card key={product.id} className="hover:shadow-glow transition-smooth cursor-pointer rounded-2xl border-0 overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="aspect-[4/3] bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center">
+                      <div className="text-6xl">{product.image}</div>
+                    </div>
+                    <div className="p-6 space-y-4">
                       <div>
-                        <h4 className="font-bold mb-2">{product.title}</h4>
-                        <Badge variant="secondary" className="mb-3">{product.category}</Badge>
-                        <p className="text-sm text-muted-foreground mb-3">{product.description}</p>
-                        <p className="text-xs text-muted-foreground">by {product.author}</p>
+                        <h4 className="font-bold text-lg mb-2">{product.title}</h4>
+                        <Badge variant="secondary" className="mb-3 rounded-lg">{product.category}</Badge>
+                        <p className="text-muted-foreground mb-3 leading-relaxed">{product.description}</p>
+                        <p className="text-sm text-muted-foreground font-medium">by {product.author}</p>
                       </div>
                     </div>
                   </CardContent>

@@ -127,12 +127,12 @@ export default function Generate() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-6 py-8 space-y-8">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-6 py-12 space-y-12">
         
         {/* Certificate Banner */}
         {showCertificateBanner && (
-          <Card className="border-primary/20 bg-gradient-hero text-white shadow-glow">
+          <Card className="border-0 bg-primary text-white shadow-large rounded-2xl">
             <CardContent className="p-8">
               <div className="flex items-start justify-between">
                 <div className="space-y-4 flex-1">
@@ -188,29 +188,29 @@ export default function Generate() {
         )}
 
         {/* Project Snapshot */}
-        <section className="space-y-6">
-          <Card className="max-w-4xl mx-auto shadow-medium">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Your Progress</CardTitle>
-              <CardDescription>Track your journey to becoming an AI expert</CardDescription>
+        <section className="space-y-8">
+          <Card className="max-w-4xl mx-auto shadow-large rounded-2xl border-0">
+            <CardHeader className="text-center pb-6">
+              <CardTitle className="text-3xl">Your Progress</CardTitle>
+              <CardDescription className="text-lg">Track your journey to becoming an AI expert</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-8">
+            <CardContent className="space-y-10 px-8 pb-8">
               
               {/* Current Level & Points */}
-              <div className="text-center space-y-4">
-                <div className="inline-flex items-center space-x-3 bg-gradient-hero text-white px-6 py-3 rounded-full">
-                  <Star className="h-6 w-6" />
-                  <span className="text-xl font-bold">Level {userData.level}</span>
+              <div className="text-center space-y-6">
+                <div className="inline-flex items-center space-x-4 bg-primary text-white px-8 py-4 rounded-2xl">
+                  <Star className="h-8 w-8" />
+                  <span className="text-2xl font-bold">Level {userData.level}</span>
                 </div>
                 
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
+                <div className="space-y-4 max-w-md mx-auto">
+                  <div className="flex justify-between text-sm font-medium">
                     <span>{userData.currentPoints} points</span>
-                    <span>{userData.nextLevelPoints} points (Next Level)</span>
+                    <span>{userData.nextLevelPoints} points</span>
                   </div>
-                  <Progress value={progressPercentage} className="h-3" />
-                  <p className="text-sm text-muted-foreground">
-                    {userData.nextLevelPoints - userData.currentPoints} points to go!
+                  <Progress value={progressPercentage} className="h-4" />
+                  <p className="text-muted-foreground">
+                    {userData.nextLevelPoints - userData.currentPoints} points to next level
                   </p>
                 </div>
               </div>
@@ -219,9 +219,9 @@ export default function Generate() {
               <div className="flex justify-center">
                 <Button 
                   onClick={handleLevelUp}
-                  className="bg-gradient-primary hover:opacity-90 transition-smooth"
+                  className="bg-primary hover:bg-primary/90 transition-smooth px-8 h-12 rounded-xl"
                 >
-                  <Upload className="mr-2 h-4 w-4" />
+                  <Upload className="mr-2 h-5 w-5" />
                   Upload Project
                 </Button>
               </div>
@@ -230,37 +230,40 @@ export default function Generate() {
         </section>
 
         {/* Progress Section */}
-        <section className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">Submission Progress</h2>
+        <section className="space-y-8">
+          <div className="text-center space-y-2">
+            <h2 className="text-3xl font-bold">Submission Progress</h2>
+            <p className="text-lg text-muted-foreground">Track your project submissions and approvals</p>
+          </div>
           
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <Card className="text-center hover:shadow-medium transition-smooth">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mx-auto mb-4">
-                  <Upload className="h-8 w-8 text-primary" />
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <Card className="text-center hover:shadow-large transition-smooth rounded-2xl border-0">
+              <CardContent className="p-8">
+                <div className="flex items-center justify-center w-20 h-20 bg-primary/10 rounded-2xl mx-auto mb-6">
+                  <Upload className="h-10 w-10 text-primary" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">{userData.projectsSubmitted}</h3>
-                <p className="text-muted-foreground">Projects Submitted</p>
+                <h3 className="text-3xl font-bold mb-2">{userData.projectsSubmitted}</h3>
+                <p className="text-muted-foreground font-medium">Projects Submitted</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-medium transition-smooth">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-center w-16 h-16 bg-success/10 rounded-full mx-auto mb-4">
-                  <CheckCircle className="h-8 w-8 text-success" />
+            <Card className="text-center hover:shadow-large transition-smooth rounded-2xl border-0">
+              <CardContent className="p-8">
+                <div className="flex items-center justify-center w-20 h-20 bg-success/10 rounded-2xl mx-auto mb-6">
+                  <CheckCircle className="h-10 w-10 text-success" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">{userData.projectsApproved}</h3>
-                <p className="text-muted-foreground">Projects Approved</p>
+                <h3 className="text-3xl font-bold mb-2">{userData.projectsApproved}</h3>
+                <p className="text-muted-foreground font-medium">Projects Approved</p>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-medium transition-smooth">
-              <CardContent className="p-6">
-                <div className="flex items-center justify-center w-16 h-16 bg-amber-500/10 rounded-full mx-auto mb-4">
-                  <Clock className="h-8 w-8 text-amber-500" />
+            <Card className="text-center hover:shadow-large transition-smooth rounded-2xl border-0">
+              <CardContent className="p-8">
+                <div className="flex items-center justify-center w-20 h-20 bg-amber-500/10 rounded-2xl mx-auto mb-6">
+                  <Clock className="h-10 w-10 text-amber-500" />
                 </div>
-                <h3 className="text-2xl font-bold mb-2">{userData.projectsInProcess}</h3>
-                <p className="text-muted-foreground">In Review</p>
+                <h3 className="text-3xl font-bold mb-2">{userData.projectsInProcess}</h3>
+                <p className="text-muted-foreground font-medium">In Review</p>
               </CardContent>
             </Card>
           </div>

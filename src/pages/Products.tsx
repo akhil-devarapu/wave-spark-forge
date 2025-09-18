@@ -122,8 +122,8 @@ export default function Products() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-6 py-8 space-y-8">
+    <div className="min-h-screen bg-background">
+      <div className="container mx-auto px-6 py-12 space-y-12">
         
         {/* Header */}
         <div className="text-center space-y-4">
@@ -134,88 +134,90 @@ export default function Products() {
         </div>
 
         {/* Search and Filters */}
-        <Card className="shadow-medium">
-          <CardContent className="p-6">
-            <div className="space-y-4">
-              {/* Search Bar */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search products, authors, or descriptions..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
-                />
-              </div>
-
-              {/* Filters */}
-              <div className="flex flex-wrap gap-4 items-center">
-                <div className="flex items-center space-x-2">
-                  <Filter className="h-4 w-4 text-muted-foreground" />
-                  <span className="text-sm font-medium">Filters:</span>
+        <Card className="shadow-large rounded-2xl border-0">
+          <CardContent className="p-8">
+              <div className="space-y-6">
+                {/* Search Bar */}
+                <div className="relative">
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <Input
+                    placeholder="Search products, authors, or descriptions..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-12 h-12 rounded-xl border-border"
+                  />
                 </div>
-                
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="All Categories" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all-categories">All Categories</SelectItem>
-                    {categories.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
 
-                <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
-                  <SelectTrigger className="w-48">
-                    <SelectValue placeholder="All Departments" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all-departments">All Departments</SelectItem>
-                    {departments.map((department) => (
-                      <SelectItem key={department} value={department}>
-                        {department}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                {/* Filters */}
+                <div className="flex flex-wrap gap-4 items-center">
+                  <div className="flex items-center space-x-2">
+                    <Filter className="h-5 w-5 text-muted-foreground" />
+                    <span className="font-medium">Filters:</span>
+                  </div>
+                  
+                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                    <SelectTrigger className="w-52 h-12 rounded-xl">
+                      <SelectValue placeholder="All Categories" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl">
+                      <SelectItem value="all-categories">All Categories</SelectItem>
+                      {categories.map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
 
-                {(searchTerm || selectedCategory || selectedDepartment) && (
-                  <Button variant="outline" onClick={clearFilters} size="sm">
-                    Clear Filters
-                  </Button>
-                )}
+                  <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
+                    <SelectTrigger className="w-52 h-12 rounded-xl">
+                      <SelectValue placeholder="All Departments" />
+                    </SelectTrigger>
+                    <SelectContent className="rounded-xl">
+                      <SelectItem value="all-departments">All Departments</SelectItem>
+                      {departments.map((department) => (
+                        <SelectItem key={department} value={department}>
+                          {department}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+
+                  {(searchTerm || selectedCategory || selectedDepartment) && (
+                    <Button variant="outline" onClick={clearFilters} size="sm" className="rounded-xl">
+                      Clear Filters
+                    </Button>
+                  )}
+                </div>
               </div>
-            </div>
           </CardContent>
         </Card>
 
         {/* Results Summary */}
         <div className="flex items-center justify-between">
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground font-medium">
             Showing {filteredProducts.length} of {allProducts.length} products
           </p>
         </div>
 
         {/* Products Grid */}
-        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
-            <Card key={product.id} className="hover:shadow-glow transition-smooth cursor-pointer group">
-              <CardHeader>
-                <div className="flex items-center justify-between">
-                  <div className="text-3xl">{product.image}</div>
-                  <Badge variant="secondary">{product.category}</Badge>
+            <Card key={product.id} className="hover:shadow-glow transition-smooth cursor-pointer group rounded-2xl border-0 overflow-hidden">
+              <div className="aspect-[4/3] bg-gradient-to-br from-primary/5 to-accent/5 flex items-center justify-center p-8">
+                <div className="text-6xl">{product.image}</div>
+              </div>
+              <CardHeader className="pb-4">
+                <div className="flex items-start justify-between mb-3">
+                  <Badge variant="secondary" className="rounded-lg">{product.category}</Badge>
                 </div>
-                <CardTitle className="group-hover:text-primary transition-smooth">
+                <CardTitle className="group-hover:text-primary transition-smooth text-lg">
                   {product.title}
                 </CardTitle>
-                <CardDescription>by {product.author} • {product.department}</CardDescription>
+                <CardDescription className="font-medium">by {product.author} • {product.department}</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-sm text-muted-foreground line-clamp-3">
+              <CardContent className="space-y-4 pt-0">
+                <p className="text-muted-foreground line-clamp-3 leading-relaxed">
                   {product.description}
                 </p>
                 
@@ -223,15 +225,15 @@ export default function Products() {
                   <div className="flex items-center space-x-4">
                     <div className="flex items-center space-x-1">
                       <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                      <span className="text-sm font-medium">{product.rating}</span>
+                      <span className="font-medium">{product.rating}</span>
                     </div>
                     <div className="flex items-center space-x-1">
                       <Users className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm text-muted-foreground">{product.users}</span>
+                      <span className="text-muted-foreground">{product.users}</span>
                     </div>
                   </div>
                   
-                  <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-smooth">
+                  <Button variant="ghost" size="sm" className="opacity-0 group-hover:opacity-100 transition-smooth rounded-xl">
                     <ExternalLink className="h-4 w-4" />
                   </Button>
                 </div>

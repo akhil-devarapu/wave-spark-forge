@@ -61,7 +61,12 @@ export default {
       boxShadow: {
         subtle: "var(--shadow-subtle)",
         medium: "var(--shadow-medium)",
+        large: "var(--shadow-large)",
         glow: "var(--shadow-glow)",
+      },
+      spacing: {
+        18: "4.5rem",
+        22: "5.5rem",
       },
       transitionTimingFunction: {
         smooth: "var(--transition-smooth)",
