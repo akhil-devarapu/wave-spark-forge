@@ -19,7 +19,7 @@ const rewards = [
   {
     id: 2,
     title: "Level 2 Gift Vouchers",
-    description: "Writing Effective Prompts + Using AI Tools",
+    description: "Effective Prompts + AI Tools",
     type: "voucher", 
     status: "earned",
     points: 750,
@@ -29,7 +29,7 @@ const rewards = [
   {
     id: 3,
     title: "Level 2 Certificate",
-    description: "Writing Effective Prompts + Using AI Tools",
+    description: "Effective Prompts + AI Tools",
     type: "certificate",
     status: "earned", 
     points: 750,
@@ -56,21 +56,20 @@ const rewards = [
   },
   {
     id: 6,
-    title: "Level 5 International Trip", 
+    title: "Level 4 International Trip", 
     description: "Productising AI Solutions",
     type: "trip",
     status: "locked",
-    points: 2500,
+    points: 3500,
     progress: 20
   }
 ];
 
 const milestones = [
   { level: 1, points: 500, title: "Full Stack + Custom GPT", status: "completed", reward: "Certificate" },
-  { level: 2, points: 1000, title: "Writing Effective Prompts + Using AI Tools", status: "completed", reward: "Gift Vouchers + Certificate" },
+  { level: 2, points: 1000, title: "Effective Prompts + AI Tools", status: "completed", reward: "Gift Vouchers + Certificate" },
   { level: 3, points: 2000, title: "Automations", status: "current", reward: "Certificate + Special Perks" },
-  { level: 4, points: 3500, title: "Advanced AI Integration", status: "locked", reward: "Advanced Certificate" },
-  { level: 5, points: 5000, title: "Productising AI Solutions", status: "locked", reward: "International Trip" }
+  { level: 4, points: 3500, title: "Productising AI Solutions", status: "locked", reward: "International Trip" }
 ];
 
 export default function Rewards() {
