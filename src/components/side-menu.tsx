@@ -1,4 +1,4 @@
-import { X, Award, Gift, Users, Lightbulb, MessageCircle, BookOpen } from "lucide-react";
+import { X, Award, Gift, Lightbulb, MessageCircle, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { useNavigate } from "react-router-dom";
@@ -15,12 +15,6 @@ const menuItemsBatch1 = [
     label: "Check Rewards",
     description: "View earned rewards",
     to: "/rewards"
-  },
-  {
-    icon: Users,
-    label: "Get Points",
-    description: "Refer colleagues",
-    to: "/refer"
   }
 ];
 
