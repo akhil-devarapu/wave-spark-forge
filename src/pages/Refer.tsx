@@ -160,32 +160,6 @@ export default function Refer() {
                 Copy Link
               </Button>
             </div>
-
-            <div className="grid md:grid-cols-2 gap-4">
-              <Button onClick={shareViaEmail} variant="outline" className="h-12">
-                <Mail className="h-5 w-5 mr-2" />
-                Share via Email
-              </Button>
-              <Button onClick={() => toast.info("Social sharing coming soon!")} variant="outline" className="h-12">
-                <MessageSquare className="h-5 w-5 mr-2" />
-                Share on Social
-              </Button>
-            </div>
-
-            <div className="space-y-3">
-              <h4 className="font-medium">Send Direct Invitation</h4>
-              <div className="flex space-x-2">
-                <Input 
-                  placeholder="Enter email address"
-                  value={emailToInvite}
-                  onChange={(e) => setEmailToInvite(e.target.value)}
-                  type="email"
-                />
-                <Button onClick={sendDirectInvite}>
-                  Send Invite
-                </Button>
-              </div>
-            </div>
           </CardContent>
         </Card>
 
