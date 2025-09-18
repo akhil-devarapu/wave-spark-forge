@@ -3,6 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+
 interface SideMenuProps {
   isOpen: boolean;
   onClose: () => void;
@@ -13,7 +16,7 @@ const menuItems = [
     icon: Award,
     label: "Generate Certificate",
     description: "Download your achievements",
-    action: "certificate"
+    to: "/generate"
   },
   {
     icon: Gift,
@@ -42,31 +45,35 @@ const menuItems = [
   {
     icon: BookOpen,
     label: "Keep Learning",
-    description: "Latest AI advancements",
-    action: "learning"
+    to: "/compete",
+    description: "Join competitions"
   }
 ];
 
 export function SideMenu({ isOpen, onClose }: SideMenuProps) {
+  const navigate = useNavigate();
+  
   const handleAction = (action: string) => {
     // Handle different actions
     switch (action) {
-      case "certificate":
-        // Navigate to generate page and show certificate banner
-        break;
       case "rewards":
-        // Show rewards modal
+        toast.success("🎉 You have 3 rewards waiting! Check your achievements section.");
         break;
       case "refer":
-        // Show referral modal
+        toast.info("📧 Referral link copied to clipboard: https://nxtwave.app/ref/user123");
+        // In a real app, you'd copy to clipboard here
         break;
       case "coach":
-        // Open AI coach
+        toast.info("🤖 AI Coach: Hi! I'm here to help you learn. What would you like to know about AI?");
         break;
-      case "learning":
-        // Show learning resources
-        break;
+      default:
+        toast.info("Feature coming soon!");
     }
+    onClose();
+  };
+
+  const handleNavigation = (to: string) => {
+    navigate(to);
     onClose();
   };
 
@@ -81,22 +88,21 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
           {menuItems.map((item) => (
             <div key={item.label}>
               {item.to ? (
-                <Link to={item.to} onClick={onClose}>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start h-auto p-4 text-left hover:bg-muted/50 transition-smooth"
-                  >
-                    <div className="flex items-start space-x-3">
-                      <div className="p-2 bg-primary/10 rounded-lg">
-                        <item.icon className="h-4 w-4 text-primary" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium">{item.label}</p>
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
-                      </div>
+                <Button
+                  variant="ghost"
+                  onClick={() => handleNavigation(item.to!)}
+                  className="w-full justify-start h-auto p-4 text-left hover:bg-muted/50 transition-smooth"
+                >
+                  <div className="flex items-start space-x-3">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <item.icon className="h-4 w-4 text-primary" />
                     </div>
-                  </Button>
-                </Link>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium">{item.label}</p>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </div>
+                  </div>
+                </Button>
               ) : (
                 <Button
                   variant="ghost"
