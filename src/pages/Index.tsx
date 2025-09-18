@@ -53,12 +53,9 @@ const topProducts = [
   }
 ];
 
-interface IndexProps {
-  showLevelUpPopup: boolean;
-  setShowLevelUpPopup: (show: boolean) => void;
-}
+interface IndexProps {}
 
-const Index = ({ showLevelUpPopup, setShowLevelUpPopup }: IndexProps) => {
+const Index = ({}: IndexProps) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [showInstructions, setShowInstructions] = useState(false);
   const navigate = useNavigate();
@@ -75,93 +72,6 @@ const Index = ({ showLevelUpPopup, setShowLevelUpPopup }: IndexProps) => {
     setShowInstructions(true);
   };
 
-  const handleCloseLevelUp = () => {
-    setShowLevelUpPopup(false);
-    navigate("/generate");
-  };
-
-  const handleGenerateCertificate = () => {
-    try {
-      // Create canvas for certificate
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      if (!ctx) {
-        toast.error("Failed to create certificate");
-        return;
-      }
-
-      // Set canvas size
-      canvas.width = 800;
-      canvas.height = 600;
-
-      // Background gradient
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, '#4f46e5');
-      gradient.addColorStop(1, '#7c3aed');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Border
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 8;
-      ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
-
-      // Inner border
-      ctx.lineWidth = 2;
-      ctx.strokeRect(60, 60, canvas.width - 120, canvas.height - 120);
-
-      // Title
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 48px Arial';
-      ctx.textAlign = 'center';
-      ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 150);
-
-      // Subtitle
-      ctx.font = '24px Arial';
-      ctx.fillText('in Generative AI', canvas.width / 2, 190);
-
-      // User name
-      ctx.font = 'bold 36px Arial';
-      ctx.fillText('John Doe', canvas.width / 2, 280);
-
-      // Achievement text
-      ctx.font = '20px Arial';
-      ctx.fillText('has successfully completed', canvas.width / 2, 320);
-
-      // Level
-      const level = Math.floor(userStats.points / 500) + 1;
-      ctx.font = 'bold 32px Arial';
-      ctx.fillText(`Level ${level} in GenAI`, canvas.width / 2, 370);
-
-      // Stats
-      ctx.font = '18px Arial';
-      ctx.fillText(`${userStats.points} Points • ${userStats.projects} Projects • ${userStats.contestsParticipated} Contests`, canvas.width / 2, 420);
-
-      // Date
-      const date = new Date().toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      });
-      ctx.fillText(date, canvas.width / 2, 480);
-
-      // Download the certificate
-      const link = document.createElement('a');
-      link.download = `GenAI-Certificate-Level-${level}.png`;
-      link.href = canvas.toDataURL('image/png');
-      
-      // Ensure the download works across browsers
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      toast.success("Certificate downloaded successfully!");
-      console.log("Certificate downloaded!");
-    } catch (error) {
-      toast.error("Failed to generate certificate");
-      console.error("Certificate generation error:", error);
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
@@ -309,64 +219,6 @@ const Index = ({ showLevelUpPopup, setShowLevelUpPopup }: IndexProps) => {
             </div>
           </div>
         </section>
-
-        {/* Level Up Popup */}
-        <Dialog open={showLevelUpPopup} onOpenChange={setShowLevelUpPopup}>
-          <DialogContent className="max-w-md">
-            <DialogHeader>
-              <DialogTitle className="flex items-center justify-between">
-                Your Progress
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setShowLevelUpPopup(false)}
-                  className="h-6 w-6 p-0"
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              </DialogTitle>
-              <DialogDescription>
-                View your achievements and generate your certificate
-              </DialogDescription>
-            </DialogHeader>
-            
-            <div className="space-y-6 py-4">
-              {/* Stats Grid */}
-              <div className="grid grid-cols-3 gap-4">
-                <div className="text-center p-4 bg-muted/50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">{userStats.points.toLocaleString()}</div>
-                  <div className="text-sm text-muted-foreground">Points</div>
-                </div>
-                <div className="text-center p-4 bg-muted/50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">{userStats.projects}</div>
-                  <div className="text-sm text-muted-foreground">Projects</div>
-                </div>
-                <div className="text-center p-4 bg-muted/50 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">{userStats.contestsParticipated}</div>
-                  <div className="text-sm text-muted-foreground">Contests</div>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-3">
-                <Button 
-                  onClick={handleGenerateCertificate}
-                  className="bg-gradient-primary hover:opacity-90 transition-smooth w-full"
-                >
-                  <Award className="h-4 w-4 mr-2" />
-                  Generate Certificate
-                </Button>
-                <Button 
-                  onClick={handleCloseLevelUp}
-                  variant="outline"
-                  className="w-full"
-                >
-                  Continue to Level Up
-                </Button>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
 
       </div>
     </div>
