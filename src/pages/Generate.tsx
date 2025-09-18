@@ -206,15 +206,7 @@ export default function Generate() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex justify-center space-x-4">
-                <Button 
-                  onClick={handleShowCertificateBanner}
-                  variant="outline"
-                  className="hover:bg-primary hover:text-primary-foreground transition-smooth"
-                >
-                  <Award className="mr-2 h-4 w-4" />
-                  Generate Certificate
-                </Button>
+              <div className="flex justify-center">
                 <Button 
                   onClick={handleLevelUp}
                   className="bg-gradient-primary hover:opacity-90 transition-smooth"
