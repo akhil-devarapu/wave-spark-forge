@@ -16,10 +16,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 210 10% 23%;
     
-    /* Primary - Airbnb-like coral/rose */
-    --primary: 0 89% 65%;
+    /* Primary - Modern blue */
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 0 89% 75%;
+    --primary-glow: 217 91% 70%;
     
     /* Subtle secondary */
     --secondary: 0 0% 96%;
@@ -43,13 +43,13 @@
     /* Borders and inputs */
     --border: 214 13% 92%;
     --input: 214 13% 92%;
-    --ring: 0 89% 65%;
+    --ring: 217 91% 60%;
     
     --radius: 1rem;
     
     /* Custom gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(0 89% 65%), hsl(0 89% 75%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
     --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
     
     /* Shadows - Airbnb-style subtle and elegant */
@@ -90,9 +90,9 @@
     --popover: 215 28% 9%;
     --popover-foreground: 0 0% 95%;
     
-    --primary: 217 91% 70%;
+    --primary: 217 91% 65%;
     --primary-foreground: 215 28% 7%;
-    --primary-glow: 217 91% 80%;
+    --primary-glow: 217 91% 75%;
     
     --secondary: 215 28% 12%;
     --secondary-foreground: 0 0% 95%;
@@ -115,7 +115,7 @@
     
     /* Dark gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 70%), hsl(142 76% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 65%), hsl(217 91% 75%));
     --gradient-subtle: linear-gradient(180deg, hsl(215 28% 7%), hsl(215 28% 9%));
   }
 }
