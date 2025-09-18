@@ -6,12 +6,36 @@ import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Award, Upload, CheckCircle, Clock, Star, Trophy, TrendingUp } from "lucide-react";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { Award, Upload, CheckCircle, Clock, Star, Trophy, TrendingUp, Home, Brain, Gift } from "lucide-react";
 import { toast } from "sonner";
 
 export default function Generate() {
   const [showCertificateBanner, setShowCertificateBanner] = useState(false);
   const [showUploadForm, setShowUploadForm] = useState(false);
+
+  const navItems = [
+    {
+      name: "Home",
+      link: "/",
+      icon: <Home className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+    {
+      name: "Learning",
+      link: "/learning",
+      icon: <Brain className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+    {
+      name: "Rewards",
+      link: "/rewards",
+      icon: <Award className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+    {
+      name: "Refer",
+      link: "/refer",
+      icon: <Gift className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+  ];
   
   // Mock user data
   const userData = {
@@ -128,6 +152,7 @@ export default function Generate() {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <FloatingNav navItems={navItems} />
       <div className="container mx-auto px-6 py-8 space-y-8">
         
         {/* Certificate Banner */}

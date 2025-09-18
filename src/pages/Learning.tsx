@@ -1,7 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Sparkles, Zap, Brain, Newspaper, Globe, Mail, BookOpen, Rss } from "lucide-react";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { ExternalLink, Sparkles, Zap, Brain, Newspaper, Globe, Mail, BookOpen, Rss, Home, Award, Gift } from "lucide-react";
 
 const aiNewsResources = [
   {
@@ -108,12 +109,36 @@ const getBadgeVariant = (badge: string) => {
 };
 
 export default function Learning() {
+  const navItems = [
+    {
+      name: "Home",
+      link: "/",
+      icon: <Home className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+    {
+      name: "Learning",
+      link: "/learning",
+      icon: <Brain className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+    {
+      name: "Rewards",
+      link: "/rewards",
+      icon: <Award className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+    {
+      name: "Refer",
+      link: "/refer",
+      icon: <Gift className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+  ];
+
   const openResource = (link: string, name: string) => {
     window.open(link, '_blank', 'noopener,noreferrer');
   };
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <FloatingNav navItems={navItems} />
       <div className="container mx-auto px-6 py-8 space-y-8">
         
         {/* Header */}

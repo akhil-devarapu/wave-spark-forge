@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { MessageCircle, Send, Bot, User, BookOpen, Lightbulb, Target, TrendingUp } from "lucide-react";
+import { FloatingNav } from "@/components/ui/floating-navbar";
+import { MessageCircle, Send, Bot, User, BookOpen, Lightbulb, Target, TrendingUp, Home, Brain, Award, Gift } from "lucide-react";
 import { toast } from "sonner";
 
 const chatHistory = [
@@ -67,6 +68,29 @@ export default function Coach() {
   const [newMessage, setNewMessage] = useState("");
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
 
+  const navItems = [
+    {
+      name: "Home",
+      link: "/",
+      icon: <Home className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+    {
+      name: "Learning",
+      link: "/learning",
+      icon: <Brain className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+    {
+      name: "Rewards",
+      link: "/rewards",
+      icon: <Award className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+    {
+      name: "Refer",
+      link: "/refer",
+      icon: <Gift className="h-4 w-4 text-neutral-500 dark:text-white" />,
+    },
+  ];
+
   const sendMessage = () => {
     if (!newMessage.trim()) return;
 
@@ -119,6 +143,7 @@ export default function Coach() {
 
   return (
     <div className="min-h-screen bg-gradient-subtle">
+      <FloatingNav navItems={navItems} />
       <div className="container mx-auto px-6 py-8 space-y-8">
         
         {/* Header */}
