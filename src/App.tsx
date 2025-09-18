@@ -133,19 +133,19 @@ const AppContent = () => {
       {/* Level Up Popup - Now Global */}
       <Dialog open={showLevelUpPopup} onOpenChange={setShowLevelUpPopup}>
         <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center justify-between">
-              <Badge variant="default" className="text-lg px-4 py-2">
-                Level 5
+          <DialogHeader className="relative">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setShowLevelUpPopup(false)}
+              className="absolute right-0 top-0 h-6 w-6 p-0"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+            <DialogTitle className="flex justify-center pt-2">
+              <Badge variant="default" className="text-xl px-6 py-3 bg-gradient-primary hover:opacity-90 transition-smooth shadow-lg">
+                🎉 Level 5 🎉
               </Badge>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setShowLevelUpPopup(false)}
-                className="h-6 w-6 p-0"
-              >
-                <X className="h-4 w-4" />
-              </Button>
             </DialogTitle>
           </DialogHeader>
           
