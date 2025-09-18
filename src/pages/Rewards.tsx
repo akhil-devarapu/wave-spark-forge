@@ -8,66 +8,77 @@ import { toast } from "sonner";
 const rewards = [
   {
     id: 1,
-    title: "AI Pioneer Badge",
-    description: "Completed first AI project successfully",
-    type: "badge",
+    title: "Level 1 Certificate",
+    description: "Full Stack + Custom GPT",
+    type: "certificate",
     status: "earned",
     points: 500,
     earnedDate: "2024-11-15",
-    icon: "🏆"
+    icon: "📜"
   },
   {
     id: 2,
-    title: "Level 3 Certificate",
-    description: "Reached Level 3 in GenAI mastery",
-    type: "certificate", 
+    title: "Level 2 Gift Vouchers",
+    description: "Writing Effective Prompts + Using AI Tools",
+    type: "voucher", 
     status: "earned",
+    points: 750,
+    earnedDate: "2024-12-01",
+    icon: "🎁"
+  },
+  {
+    id: 3,
+    title: "Level 2 Certificate",
+    description: "Writing Effective Prompts + Using AI Tools",
+    type: "certificate",
+    status: "earned", 
     points: 750,
     earnedDate: "2024-12-01",
     icon: "📜"
   },
   {
-    id: 3,
-    title: "Innovation Leader",
-    description: "Top 10% in monthly innovation contest",
-    type: "badge",
-    status: "earned", 
-    points: 1000,
-    earnedDate: "2024-12-10",
-    icon: "💡"
-  },
-  {
     id: 4,
-    title: "Community Helper",
-    description: "Help 5 community members with their projects",
-    type: "badge",
+    title: "Level 3 Certificate",
+    description: "Automations",
+    type: "certificate",
     status: "in-progress",
-    points: 300,
+    points: 1200,
     progress: 60
   },
   {
     id: 5,
-    title: "Master Collaborator", 
-    description: "Complete 10 collaborative AI projects",
-    type: "certificate",
+    title: "Level 3 Special Perks", 
+    description: "Automations",
+    type: "perks",
     status: "locked",
     points: 1200,
-    progress: 30
+    progress: 60
+  },
+  {
+    id: 6,
+    title: "Level 5 International Trip", 
+    description: "Productising AI Solutions",
+    type: "trip",
+    status: "locked",
+    points: 2500,
+    progress: 20
   }
 ];
 
 const milestones = [
-  { level: 1, points: 500, title: "Beginner", status: "completed" },
-  { level: 2, points: 1000, title: "Intermediate", status: "completed" },
-  { level: 3, points: 2000, title: "Advanced", status: "completed" },
-  { level: 4, points: 3500, title: "Expert", status: "current" },
-  { level: 5, points: 5000, title: "Master", status: "locked" }
+  { level: 1, points: 500, title: "Full Stack + Custom GPT", status: "completed", reward: "Certificate" },
+  { level: 2, points: 1000, title: "Writing Effective Prompts + Using AI Tools", status: "completed", reward: "Gift Vouchers + Certificate" },
+  { level: 3, points: 2000, title: "Automations", status: "current", reward: "Certificate + Special Perks" },
+  { level: 4, points: 3500, title: "Advanced AI Integration", status: "locked", reward: "Advanced Certificate" },
+  { level: 5, points: 5000, title: "Productising AI Solutions", status: "locked", reward: "International Trip" }
 ];
 
 export default function Rewards() {
-  const currentPoints = 2340;
+  const currentPoints = 1340;
   const nextMilestone = milestones.find(m => m.status === "locked");
+  const currentLevel = milestones.find(m => m.status === "current");
   const progressToNext = nextMilestone ? (currentPoints / nextMilestone.points) * 100 : 100;
+  const pointsNeeded = nextMilestone ? nextMilestone.points - currentPoints : 0;
 
   const handleClaimReward = (rewardId: number) => {
     toast.success("🎉 Reward claimed successfully!");
@@ -108,18 +119,22 @@ export default function Rewards() {
                 <p className="text-sm text-muted-foreground">Rewards Earned</p>
               </div>
               <div className="text-center p-4 bg-muted/50 rounded-lg">
-                <div className="text-3xl font-bold text-primary">Level 4</div>
+                <div className="text-3xl font-bold text-primary">Level {currentLevel?.level}</div>
                 <p className="text-sm text-muted-foreground">Current Level</p>
               </div>
             </div>
 
             {nextMilestone && (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span>Progress to {nextMilestone.title}</span>
+                  <span>Progress to Level {nextMilestone.level}</span>
                   <span>{currentPoints} / {nextMilestone.points} points</span>
                 </div>
                 <Progress value={progressToNext} className="h-2" />
+                <div className="text-center">
+                  <div className="text-lg font-bold text-primary">{pointsNeeded.toLocaleString()}</div>
+                  <p className="text-sm text-muted-foreground">Points needed to unlock {nextMilestone.title}</p>
+                </div>
               </div>
             )}
           </CardContent>
@@ -153,6 +168,7 @@ export default function Rewards() {
                     <div>
                       <p className="font-medium">Level {milestone.level} - {milestone.title}</p>
                       <p className="text-sm text-muted-foreground">{milestone.points.toLocaleString()} points</p>
+                      <p className="text-xs text-primary font-medium">🎁 {milestone.reward}</p>
                     </div>
                   </div>
                   {milestone.status === "completed" && <Award className="h-5 w-5 text-success" />}
