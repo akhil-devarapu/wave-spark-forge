@@ -57,24 +57,10 @@ const topProducts = [
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [showInstructions, setShowInstructions] = useState(false);
-  const [showCertificateBanner, setShowCertificateBanner] = useState(false);
-
-  // Mock user data
-  const userData = {
-    level: 5,
-    currentPoints: 2340,
-    nextLevelPoints: 3000,
-    totalProjects: 8,
-    contestsParticipated: 3
-  };
 
   const handleJoinContest = () => {
     if (!selectedCategory) return;
     setShowInstructions(true);
-  };
-
-  const handleLevelUpClick = () => {
-    setShowCertificateBanner(true);
   };
 
   return (
@@ -91,69 +77,17 @@ const Index = () => {
               Compete
             </Button>
             
-            <Button 
-              onClick={handleLevelUpClick}
-              variant="outline"
-              className="hover:bg-primary hover:text-primary-foreground transition-smooth"
-            >
-              Level Up
-            </Button>
+            <Link to="/generate">
+              <Button 
+                variant="outline"
+                className="hover:bg-primary hover:text-primary-foreground transition-smooth"
+              >
+                Level Up
+              </Button>
+            </Link>
           </div>
         </section>
 
-
-        {/* Certificate Banner */}
-        {showCertificateBanner && (
-          <Card className="border-primary/20 bg-gradient-hero text-white shadow-glow">
-            <CardContent className="p-8">
-              <div className="flex items-start justify-between">
-                <div className="space-y-4 flex-1">
-                  <div className="flex items-center space-x-3">
-                    <Award className="h-8 w-8" />
-                    <h2 className="text-2xl font-bold">Generate Certificate</h2>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="text-center">
-                      <div className="flex items-center justify-center space-x-2 mb-2">
-                        <Star className="h-5 w-5" />
-                        <span className="text-lg font-bold">{userData.currentPoints} Points</span>
-                      </div>
-                      <p className="text-sm opacity-90">Your Points</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="flex items-center justify-center space-x-2 mb-2">
-                        <Upload className="h-5 w-5" />
-                        <span className="text-lg font-bold">{userData.totalProjects}</span>
-                      </div>
-                      <p className="text-sm opacity-90">Projects Built</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="flex items-center justify-center space-x-2 mb-2">
-                        <Trophy className="h-5 w-5" />
-                        <span className="text-lg font-bold">{userData.contestsParticipated}</span>
-                      </div>
-                      <p className="text-sm opacity-90">Contests Joined</p>
-                    </div>
-                  </div>
-
-                  <div className="flex space-x-3">
-                    <Button variant="secondary" className="bg-white text-primary hover:bg-white/90">
-                      Generate Certificate
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      onClick={() => setShowCertificateBanner(false)}
-                      className="text-white hover:bg-white/10"
-                    >
-                      Close
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        )}
 
         {/* Compete Section */}
         <section id="compete-section" className="space-y-8">
