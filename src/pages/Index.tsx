@@ -94,49 +94,47 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center">Join the Competition</h2>
           
           {/* Join Contest */}
-          <Card className="max-w-2xl mx-auto shadow-medium">
-            <CardHeader>
-              <CardTitle className="flex items-center space-x-2">
-                <Trophy className="h-5 w-5 text-primary" />
-                <span>Next Contest</span>
-              </CardTitle>
-              <CardDescription>Choose your category and join the competition</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="flex items-center space-x-4 p-4 bg-muted/50 rounded-lg">
-                <Calendar className="h-5 w-5 text-primary" />
-                <div>
-                  <p className="font-medium">Contest Date</p>
-                  <p className="text-sm text-muted-foreground">December 15, 2024 - January 15, 2025</p>
+          <Card className="max-w-5xl mx-auto shadow-medium">
+            <CardContent className="p-6">
+              <div className="flex flex-col lg:flex-row items-center gap-6">
+                
+                {/* Contest Info */}
+                <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0">
+                  <Trophy className="h-6 w-6 text-primary" />
+                  <div>
+                    <h3 className="font-semibold">Next Contest</h3>
+                    <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="space-y-3">
-                <label className="text-sm font-medium">Select Category</label>
-                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Choose your expertise area" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {categories.map((category) => (
-                      <SelectItem key={category} value={category}>
-                        {category}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
+                {/* Category Selection */}
+                <div className="flex-1 min-w-0">
+                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Choose your expertise area" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {categories.map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
 
-              <Button 
-                onClick={handleJoinContest} 
-                disabled={!selectedCategory}
-                className="w-full bg-gradient-primary hover:opacity-90 transition-smooth"
-              >
-                Join Contest
-              </Button>
+                {/* Join Button */}
+                <Button 
+                  onClick={handleJoinContest} 
+                  disabled={!selectedCategory}
+                  className="bg-gradient-primary hover:opacity-90 transition-smooth flex-shrink-0"
+                >
+                  Join Contest
+                </Button>
+              </div>
 
               {showInstructions && (
-                <div className="p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
                   <h4 className="font-medium mb-2">Contest Instructions</h4>
                   <ul className="text-sm space-y-1 text-muted-foreground">
                     <li>• Build an innovative AI solution in your chosen category</li>
