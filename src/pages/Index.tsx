@@ -96,34 +96,36 @@ const Index = () => {
           {/* Join Contest */}
           <Card className="max-w-5xl mx-auto shadow-medium">
             <CardContent className="p-6">
-              <div className="flex flex-col lg:flex-row items-center gap-6">
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
                 
-                {/* Contest Info */}
-                <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0">
-                  <Trophy className="h-6 w-6 text-primary" />
-                  <div>
-                    <h3 className="font-semibold">Next Contest</h3>
-                    <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
+                {/* Contest Details - Left Side */}
+                <div className="flex items-center space-x-6">
+                  <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4">
+                    <Trophy className="h-6 w-6 text-primary" />
+                    <div>
+                      <h3 className="font-semibold">Next Contest</h3>
+                      <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
+                    </div>
+                  </div>
+
+                  {/* Category Selection */}
+                  <div className="min-w-60">
+                    <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Choose your expertise area" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {categories.map((category) => (
+                          <SelectItem key={category} value={category}>
+                            {category}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
 
-                {/* Category Selection */}
-                <div className="flex-1 min-w-0">
-                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Choose your expertise area" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.map((category) => (
-                        <SelectItem key={category} value={category}>
-                          {category}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                {/* Join Button */}
+                {/* Join Button - Right Side */}
                 <Button 
                   onClick={handleJoinContest} 
                   disabled={!selectedCategory}
