@@ -94,11 +94,11 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center">Join the Competition</h2>
           
           {/* Join Contest */}
-          <Card className="max-w-5xl mx-auto shadow-medium">
+          <Card className="w-full shadow-medium">
             <CardContent className="p-6">
-              <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+              <div className="flex items-center justify-between w-full gap-6">
                 
-                {/* Contest Details - Left Side */}
+                {/* Contest Details & Category - Full Left */}
                 <div className="flex items-center space-x-6">
                   <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4">
                     <Trophy className="h-6 w-6 text-primary" />
@@ -125,11 +125,11 @@ const Index = () => {
                   </div>
                 </div>
 
-                {/* Join Button - Right Side */}
+                {/* Join Button - Full Right */}
                 <Button 
                   onClick={handleJoinContest} 
                   disabled={!selectedCategory}
-                  className="bg-gradient-primary hover:opacity-90 transition-smooth flex-shrink-0"
+                  className="bg-gradient-primary hover:opacity-90 transition-smooth"
                 >
                   Join Contest
                 </Button>
