@@ -84,14 +84,14 @@ const Index = ({}: IndexProps) => {
           <h2 className="text-3xl font-bold text-center">Join the Competition</h2>
           
           {/* Join Contest */}
-          <Card className="w-full shadow-medium max-w-6xl mx-auto">
+          <Card className="w-full shadow-medium max-w-6xl mx-auto card-interactive animate-fade-in">
             <CardContent className="p-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 
                 {/* Contest Details & Category - Full Left */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 flex-1">
-                  <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0">
-                    <Trophy className="h-6 w-6 text-primary" />
+                  <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0 hover:bg-muted/70 transition-all duration-300">
+                    <Trophy className="h-6 w-6 text-primary icon-bounce" />
                     <div>
                       <h3 className="font-semibold">Next Contest</h3>
                       <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
@@ -101,7 +101,7 @@ const Index = ({}: IndexProps) => {
                   {/* Category Selection */}
                   <div className="w-full sm:w-80 lg:w-96">
                     <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full btn-interactive">
                         <SelectValue placeholder="Choose your expertise area" />
                       </SelectTrigger>
                       <SelectContent>
@@ -120,7 +120,7 @@ const Index = ({}: IndexProps) => {
                   <Button 
                     onClick={handleJoinContest} 
                     disabled={!selectedCategory}
-                    className="bg-gradient-primary hover:opacity-90 transition-smooth w-full sm:w-auto px-8"
+                    className="btn-primary-interactive w-full sm:w-auto px-8 animate-pulse-glow"
                   >
                     Join Contest
                   </Button>
@@ -128,7 +128,7 @@ const Index = ({}: IndexProps) => {
               </div>
 
               {showInstructions && (
-                <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+                <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20 animate-slide-up">
                   <h4 className="font-medium mb-2">Contest Instructions</h4>
                   <ul className="text-sm space-y-1 text-muted-foreground">
                     <li>• Build an innovative AI solution in your chosen category</li>
@@ -136,7 +136,7 @@ const Index = ({}: IndexProps) => {
                     <li>• Projects will be judged on innovation, impact, and technical excellence</li>
                     <li>• Winners receive points, certificates, and exclusive rewards</li>
                   </ul>
-                  <Button className="mt-3 w-full" size="sm">
+                  <Button className="mt-3 w-full btn-interactive" size="sm">
                     Confirm Participation
                   </Button>
                 </div>
@@ -151,18 +151,18 @@ const Index = ({}: IndexProps) => {
               <p className="text-muted-foreground">AI power users</p>
             </div>
 
-            <Card className="shadow-medium max-w-4xl mx-auto">
+            <Card className="shadow-medium max-w-4xl mx-auto card-interactive">
               <CardContent className="p-0">
                 <div className="space-y-0">
                   {leaderboard.map((user, index) => (
                     <div 
                       key={user.name}
-                      className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-smooth ${
+                      className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-all duration-300 hover:scale-[1.01] hover:shadow-md ${
                         index < leaderboard.length - 1 ? 'border-b' : ''
                       }`}
                     >
                       <div className="flex items-center space-x-4">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary text-white font-bold">
+                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary text-white font-bold icon-bounce">
                           {user.rank <= 3 ? (
                             user.rank === 1 ? <Trophy className="h-5 w-5" /> :
                             user.rank === 2 ? <Medal className="h-5 w-5" /> :
@@ -172,11 +172,11 @@ const Index = ({}: IndexProps) => {
                           )}
                         </div>
                         <div>
-                          <p className="font-medium">{user.name}</p>
+                          <p className="font-medium hover:text-primary transition-colors duration-200">{user.name}</p>
                           <p className="text-sm text-muted-foreground">{user.projects} projects</p>
                         </div>
                       </div>
-                      <Badge variant="secondary" className="text-lg font-bold px-3 py-1">
+                      <Badge variant="secondary" className="text-lg font-bold px-3 py-1 badge-glow">
                         {user.score.toLocaleString()}
                       </Badge>
                     </div>
@@ -194,7 +194,7 @@ const Index = ({}: IndexProps) => {
                 <p className="text-muted-foreground">Outstanding AI solutions from our community</p>
               </div>
               <Link to="/products">
-                <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground transition-smooth">
+                <Button variant="outline" className="btn-interactive hover:bg-primary hover:text-primary-foreground transition-all duration-300">
                   See More
                 </Button>
               </Link>
@@ -202,13 +202,13 @@ const Index = ({}: IndexProps) => {
 
             <div className="grid md:grid-cols-3 gap-6">
               {topProducts.map((product) => (
-                <Card key={product.id} className="hover:shadow-glow transition-smooth cursor-pointer">
+                <Card key={product.id} className="card-interactive hover:shadow-glow transition-all duration-300 cursor-pointer animate-fade-in">
                   <CardContent className="p-6">
                     <div className="text-center space-y-4">
-                      <div className="text-4xl mb-4">{product.image}</div>
+                      <div className="text-4xl mb-4 transition-transform duration-200 hover:scale-110">{product.image}</div>
                       <div>
-                        <h4 className="font-bold mb-2">{product.title}</h4>
-                        <Badge variant="secondary" className="mb-3">{product.category}</Badge>
+                        <h4 className="font-bold mb-2 hover:text-primary transition-colors duration-200">{product.title}</h4>
+                        <Badge variant="secondary" className="mb-3 badge-glow">{product.category}</Badge>
                         <p className="text-sm text-muted-foreground mb-3">{product.description}</p>
                         <p className="text-xs text-muted-foreground">by {product.author}</p>
                       </div>

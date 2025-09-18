@@ -142,10 +142,10 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
             <Button
               variant="ghost"
               onClick={handleGenerateCertificate}
-              className="w-full justify-start h-auto p-4 text-left hover:bg-muted/50 transition-smooth"
+              className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-muted/50"
             >
               <div className="flex items-start space-x-3">
-                <div className="p-2 bg-primary/10 rounded-lg">
+                <div className="p-2 bg-primary/10 rounded-lg icon-bounce">
                   <Award className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -163,10 +163,10 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
                 <Button
                   variant="ghost"
                   onClick={() => handleNavigation(item.to)}
-                  className="w-full justify-start h-auto p-4 text-left hover:bg-muted/50 transition-smooth"
+                  className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-muted/50"
                 >
                   <div className="flex items-start space-x-3">
-                    <div className="p-2 bg-primary/10 rounded-lg">
+                    <div className="p-2 bg-primary/10 rounded-lg icon-bounce">
                       <item.icon className="h-4 w-4 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -189,10 +189,10 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
                 <Button
                   variant="ghost"
                   onClick={() => handleNavigation(item.to)}
-                  className="w-full justify-start h-auto p-4 text-left hover:bg-muted/50 transition-smooth"
+                  className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-muted/50"
                 >
                   <div className="flex items-start space-x-3">
-                    <div className="p-2 bg-primary/10 rounded-lg">
+                    <div className="p-2 bg-primary/10 rounded-lg icon-bounce">
                       <item.icon className="h-4 w-4 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">

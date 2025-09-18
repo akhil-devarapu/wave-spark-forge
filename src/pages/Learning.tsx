@@ -129,24 +129,24 @@ export default function Learning() {
           {aiNewsResources.map((resource) => (
             <Card 
               key={resource.id} 
-              className="hover:shadow-medium transition-smooth cursor-pointer border hover:border-primary/50"
+              className="card-interactive hover:shadow-medium border hover:border-primary/50 animate-fade-in"
               onClick={() => openResource(resource.link, resource.name)}
             >
               <CardHeader>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center space-x-3">
-                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary icon-bounce">
                       {resource.icon}
                     </div>
                     <div>
-                      <Badge variant={getBadgeVariant(resource.badge)}>
+                      <Badge variant={getBadgeVariant(resource.badge)} className="badge-glow">
                         {resource.badge}
                       </Badge>
                     </div>
                   </div>
-                  <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                  <ExternalLink className="h-4 w-4 text-muted-foreground icon-pulse" />
                 </div>
-                <CardTitle className="text-xl hover:text-primary transition-smooth">
+                <CardTitle className="text-xl hover:text-primary transition-colors duration-200">
                   {resource.name}
                 </CardTitle>
                 <CardDescription>{resource.description}</CardDescription>
@@ -154,7 +154,7 @@ export default function Learning() {
               
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between text-sm">
-                  <Badge variant="outline">{resource.category}</Badge>
+                  <Badge variant="outline" className="badge-glow">{resource.category}</Badge>
                   <span className="text-muted-foreground">{resource.frequency}</span>
                 </div>
                 
@@ -162,7 +162,7 @@ export default function Learning() {
                   <h4 className="font-medium text-sm">What You Get:</h4>
                   <div className="grid grid-cols-2 gap-1">
                     {resource.features.map((feature, index) => (
-                      <div key={index} className="flex items-center space-x-2 text-sm text-muted-foreground">
+                      <div key={index} className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-primary transition-colors duration-200">
                         <div className="w-1 h-1 bg-primary rounded-full"></div>
                         <span>{feature}</span>
                       </div>
@@ -175,7 +175,7 @@ export default function Learning() {
                     e.stopPropagation();
                     openResource(resource.link, resource.name);
                   }}
-                  className="w-full mt-4"
+                  className="w-full mt-4 btn-interactive"
                   variant="outline"
                 >
                   <ExternalLink className="h-4 w-4 mr-2" />
@@ -187,10 +187,10 @@ export default function Learning() {
         </div>
 
         {/* Additional Resources */}
-        <Card className="shadow-medium">
+        <Card className="shadow-medium card-interactive">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
-              <Sparkles className="h-5 w-5 text-primary" />
+              <Sparkles className="h-5 w-5 text-primary icon-bounce" />
               <span>Stay Updated</span>
             </CardTitle>
             <CardDescription>
@@ -201,7 +201,7 @@ export default function Learning() {
             <div className="grid md:grid-cols-3 gap-4">
               <Button 
                 variant="outline" 
-                className="justify-start h-auto p-4"
+                className="justify-start h-auto p-4 btn-interactive"
                 onClick={() => window.open('https://twitter.com/OpenAI', '_blank')}
               >
                 <div className="text-left">
@@ -211,7 +211,7 @@ export default function Learning() {
               </Button>
               <Button 
                 variant="outline" 
-                className="justify-start h-auto p-4"
+                className="justify-start h-auto p-4 btn-interactive"
                 onClick={() => window.open('https://www.anthropic.com/news', '_blank')}
               >
                 <div className="text-left">
@@ -221,7 +221,7 @@ export default function Learning() {
               </Button>
               <Button 
                 variant="outline" 
-                className="justify-start h-auto p-4"
+                className="justify-start h-auto p-4 btn-interactive"
                 onClick={() => window.open('https://airesearch.com', '_blank')}
               >
                 <div className="text-left">

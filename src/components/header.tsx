@@ -46,7 +46,7 @@ export function Header({ onLevelUpClick }: HeaderProps) {
               <div className="flex items-center gap-3">
                 <Button 
                   onClick={handleCompeteClick}
-                  className="bg-gradient-primary hover:opacity-90 transition-smooth text-white font-medium"
+                  className="btn-primary-interactive text-white font-medium"
                   size="sm"
                 >
                   Compete
@@ -55,7 +55,7 @@ export function Header({ onLevelUpClick }: HeaderProps) {
                 <Button 
                   onClick={onLevelUpClick}
                   variant="outline"
-                  className="hover:bg-primary hover:text-primary-foreground transition-smooth font-medium"
+                  className="btn-interactive hover:bg-primary hover:text-primary-foreground font-medium"
                   size="sm"
                 >
                   Level Up
@@ -70,9 +70,9 @@ export function Header({ onLevelUpClick }: HeaderProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsSideMenuOpen(true)}
-                className="hover:bg-muted transition-smooth"
+                className="btn-interactive hover:bg-muted"
               >
-                <Menu className="h-5 w-5" />
+                <Menu className="h-5 w-5 icon-pulse" />
                 <span className="sr-only">Open menu</span>
               </Button>
             </div>
