@@ -8,7 +8,6 @@ import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Award, Upload, CheckCircle, Clock, Star, Trophy, TrendingUp } from "lucide-react";
 import { toast } from "sonner";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 
 export default function Generate() {
   const [showCertificateBanner, setShowCertificateBanner] = useState(false);
@@ -128,8 +127,8 @@ export default function Generate() {
   };
 
   return (
-    <AuroraBackground className="min-h-screen">
-      <div className="container mx-auto px-6 py-8 space-y-8 relative z-10">
+    <div className="min-h-screen bg-gradient-subtle">
+      <div className="container mx-auto px-6 py-8 space-y-8">
         
         {/* Certificate Banner */}
         {showCertificateBanner && (
@@ -312,6 +311,6 @@ export default function Generate() {
           </DialogContent>
         </Dialog>
       </div>
-    </AuroraBackground>
+    </div>
   );
 }

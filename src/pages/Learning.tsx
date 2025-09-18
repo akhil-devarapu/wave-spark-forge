@@ -2,7 +2,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, Sparkles, Zap, Brain, Code, Image, Music, Video, MessageSquare } from "lucide-react";
-import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const aiTools = [
   {
@@ -115,8 +114,8 @@ export default function Learning() {
   };
 
   return (
-    <AuroraBackground className="min-h-screen">
-      <div className="container mx-auto px-6 py-8 space-y-8 relative z-10">
+    <div className="min-h-screen bg-gradient-subtle">
+      <div className="container mx-auto px-6 py-8 space-y-8">
         
         {/* Header */}
         <div className="text-center space-y-4">
@@ -235,6 +234,6 @@ export default function Learning() {
           </CardContent>
         </Card>
       </div>
-    </AuroraBackground>
+    </div>
   );
 }
