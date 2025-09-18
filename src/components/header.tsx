@@ -4,6 +4,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { SideMenu } from "./side-menu";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import nxtWaveLogo from "@/assets/nxtwave-logo.png";
 
 export function Header() {
   const [isSideMenuOpen, setIsSideMenuOpen] = useState(false);
@@ -13,13 +14,12 @@ export function Header() {
       <header className="w-full border-b bg-background/80 backdrop-blur-md sticky top-0 z-50">
         <div className="container flex h-16 items-center justify-between px-6">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-smooth">
-            <div className="h-8 w-8 bg-gradient-hero rounded-lg flex items-center justify-center">
-              <span className="text-sm font-bold text-white">N</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-              NxtWave
-            </span>
+          <Link to="/" className="flex items-center hover:opacity-80 transition-smooth">
+            <img 
+              src={nxtWaveLogo} 
+              alt="NXT WAVE" 
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Right Side Controls */}
