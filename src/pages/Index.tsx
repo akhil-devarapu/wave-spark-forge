@@ -74,34 +74,27 @@ const Index = ({}: IndexProps) => {
 
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-6 py-12 space-y-16">
+    <div className="min-h-screen bg-gradient-subtle">
+      <div className="container mx-auto px-6 py-8 space-y-12">
         
 
 
         {/* Compete Section */}
-        <section id="compete-section" className="space-y-12 max-w-7xl mx-auto">
-          <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold text-foreground">Join the Competition</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Showcase your AI expertise and compete with the best minds in the community
-            </p>
-          </div>
+        <section id="compete-section" className="space-y-8 max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center">Join the Competition</h2>
           
           {/* Join Contest */}
-          <Card className="w-full shadow-large max-w-6xl mx-auto rounded-2xl border-0">
-            <CardContent className="p-8">
+          <Card className="w-full shadow-medium max-w-6xl mx-auto">
+            <CardContent className="p-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 
                 {/* Contest Details & Category - Full Left */}
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 flex-1">
-                  <div className="flex items-center space-x-6 bg-muted/30 rounded-xl p-6 flex-shrink-0">
-                    <div className="bg-primary/10 p-3 rounded-xl">
-                      <Trophy className="h-8 w-8 text-primary" />
-                    </div>
+                  <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0">
+                    <Trophy className="h-6 w-6 text-primary" />
                     <div>
-                      <h3 className="text-lg font-semibold">Next Contest</h3>
-                      <p className="text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
+                      <h3 className="font-semibold">Next Contest</h3>
+                      <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
                     </div>
                   </div>
 

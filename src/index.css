@@ -2,61 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* NxtWave Gen AI Platform Design System - Airbnb-Inspired Modern & Clean */
+/* NxtWave Gen AI Platform Design System - Modern & Minimal */
 
 @layer base {
   :root {
-    /* Core Colors - Airbnb-inspired clean palette */
+    /* Core Colors - Modern tech palette */
     --background: 0 0% 100%;
-    --foreground: 210 10% 23%;
+    --foreground: 215 25% 27%;
     
     --card: 0 0% 100%;
-    --card-foreground: 210 10% 23%;
+    --card-foreground: 215 25% 27%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 210 10% 23%;
+    --popover-foreground: 215 25% 27%;
     
-    /* Primary - Modern blue */
+    /* AI-inspired gradient primary */
     --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
     --primary-glow: 217 91% 70%;
     
     /* Subtle secondary */
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 210 10% 23%;
+    --secondary: 220 13% 97%;
+    --secondary-foreground: 215 25% 27%;
     
     /* Muted for subtle elements */
-    --muted: 0 0% 96%;
-    --muted-foreground: 215 10% 40%;
+    --muted: 220 13% 97%;
+    --muted-foreground: 215 16% 57%;
     
     /* Accent for highlights */
-    --accent: 0 0% 95%;
-    --accent-foreground: 210 10% 23%;
+    --accent: 142 76% 73%;
+    --accent-foreground: 215 25% 27%;
     
     /* Success for progress */
-    --success: 142 71% 45%;
-    --success-foreground: 0 0% 100%;
+    --success: 142 76% 73%;
+    --success-foreground: 215 25% 27%;
     
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     
     /* Borders and inputs */
-    --border: 214 13% 92%;
-    --input: 214 13% 92%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
     --ring: 217 91% 60%;
     
-    --radius: 1rem;
+    --radius: 0.75rem;
     
     /* Custom gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(217 91% 70%));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(0 0% 98%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(142 76% 73%));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 13% 98%));
     
-    /* Shadows - Airbnb-style subtle and elegant */
-    --shadow-subtle: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
-    --shadow-medium: 0 2px 8px 0 hsl(0 0% 0% / 0.08), 0 2px 4px 0 hsl(0 0% 0% / 0.03);
-    --shadow-large: 0 6px 16px 0 hsl(0 0% 0% / 0.12), 0 0 0 1px hsl(0 0% 0% / 0.05);
-    --shadow-glow: 0 0 0 1px hsl(var(--primary) / 0.1), 0 4px 16px 0 hsl(var(--primary) / 0.15);
+    /* Shadows */
+    --shadow-subtle: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-medium: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.15);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -90,9 +89,9 @@
     --popover: 215 28% 9%;
     --popover-foreground: 0 0% 95%;
     
-    --primary: 217 91% 65%;
+    --primary: 217 91% 70%;
     --primary-foreground: 215 28% 7%;
-    --primary-glow: 217 91% 75%;
+    --primary-glow: 217 91% 80%;
     
     --secondary: 215 28% 12%;
     --secondary-foreground: 0 0% 95%;
@@ -115,7 +114,7 @@
     
     /* Dark gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 65%), hsl(217 91% 75%));
+    --gradient-hero: linear-gradient(135deg, hsl(217 91% 70%), hsl(142 76% 60%));
     --gradient-subtle: linear-gradient(180deg, hsl(215 28% 7%), hsl(215 28% 9%));
   }
 }
