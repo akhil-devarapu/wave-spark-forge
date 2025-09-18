@@ -331,7 +331,7 @@ const Index = () => {
                 </Button>
               </DialogTitle>
               <DialogDescription>
-                View your achievements and generate your certificate
+                View your achievements and track your progress
               </DialogDescription>
             </DialogHeader>
             
@@ -354,13 +354,6 @@ const Index = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col gap-3">
-                <Button 
-                  onClick={handleGenerateCertificate}
-                  className="bg-gradient-primary hover:opacity-90 transition-smooth w-full"
-                >
-                  <Award className="h-4 w-4 mr-2" />
-                  Generate Certificate
-                </Button>
                 <Button 
                   onClick={handleCloseLevelUp}
                   variant="outline"
