@@ -51,11 +51,16 @@
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
     --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(142 76% 73%));
     --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 13% 98%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(142 76% 80%));
+    --gradient-rainbow: linear-gradient(135deg, hsl(217 91% 60%), hsl(142 76% 73%), hsl(280 89% 85%));
     
-    /* Shadows */
+    /* Enhanced Shadows with color */
     --shadow-subtle: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
     --shadow-medium: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
-    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.25);
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-accent: 0 0 30px hsl(var(--accent) / 0.2);
+    --shadow-colorful: 0 8px 32px hsl(var(--primary) / 0.12), 0 4px 16px hsl(var(--accent) / 0.08);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -132,20 +137,43 @@
 @layer utilities {
   /* Interactive Button Effects */
   .btn-interactive {
-    @apply transition-all duration-300 transform hover:scale-105 hover:shadow-glow active:scale-95;
+    @apply relative overflow-hidden transition-all duration-300 transform hover:scale-105 hover:shadow-glow active:scale-95 before:absolute before:inset-0 before:bg-gradient-to-r before:from-primary/10 before:to-accent/10 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100;
   }
   
   .btn-primary-interactive {
-    @apply bg-gradient-primary hover:opacity-90 transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 hover:rotate-1;
+    @apply relative overflow-hidden bg-gradient-primary hover:brightness-110 transition-all duration-300 transform hover:scale-105 hover:shadow-glow active:scale-95 after:absolute after:inset-0 after:bg-gradient-to-r after:from-white/20 after:via-transparent after:to-white/10 after:opacity-0 after:transition-opacity after:duration-300 hover:after:opacity-100;
   }
   
   /* Card Hover Effects */
   .card-interactive {
-    @apply transition-all duration-300 transform hover:scale-[1.02] hover:shadow-glow hover:-translate-y-1 cursor-pointer;
+    @apply relative overflow-hidden transition-all duration-300 transform hover:scale-[1.02] hover:shadow-glow hover:-translate-y-1 cursor-pointer before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/5 before:to-accent/5 before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100;
   }
   
   .card-glow {
-    @apply hover:shadow-glow transition-shadow duration-300;
+    @apply hover:shadow-glow transition-all duration-300 hover:border-primary/20 hover:bg-gradient-subtle;
+  }
+  
+  /* Enhanced Color Interactions */
+  .color-shift-primary {
+    @apply transition-all duration-300 hover:text-primary hover:bg-primary/10 hover:border-primary/30;
+  }
+  
+  .color-shift-accent {
+    @apply transition-all duration-300 hover:text-accent hover:bg-accent/10 hover:border-accent/30;
+  }
+  
+  /* Ripple Effect */
+  .ripple-effect {
+    @apply relative overflow-hidden transition-all duration-200 active:scale-95;
+  }
+  
+  .ripple-effect::after {
+    content: '';
+    @apply absolute inset-0 bg-white/20 scale-0 rounded-full transition-transform duration-300 ease-out;
+  }
+  
+  .ripple-effect:active::after {
+    @apply scale-[10] opacity-0;
   }
   
   /* Icon Animations */

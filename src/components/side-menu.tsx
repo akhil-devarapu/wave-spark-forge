@@ -142,10 +142,10 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
             <Button
               variant="ghost"
               onClick={handleGenerateCertificate}
-              className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-muted/50"
+              className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-gradient-primary/10 color-shift-primary ripple-effect"
             >
               <div className="flex items-start space-x-3">
-                <div className="p-2 bg-primary/10 rounded-lg icon-bounce">
+                <div className="p-2 bg-gradient-primary/20 rounded-lg icon-bounce hover:shadow-glow">
                   <Award className="h-4 w-4 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -163,11 +163,11 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
                 <Button
                   variant="ghost"
                   onClick={() => handleNavigation(item.to)}
-                  className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-muted/50"
+                  className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-gradient-accent/10 color-shift-accent ripple-effect"
                 >
                   <div className="flex items-start space-x-3">
-                    <div className="p-2 bg-primary/10 rounded-lg icon-bounce">
-                      <item.icon className="h-4 w-4 text-primary" />
+                    <div className="p-2 bg-accent/20 rounded-lg icon-bounce hover:shadow-accent">
+                      <item.icon className="h-4 w-4 text-accent" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium">{item.label}</p>
@@ -189,10 +189,10 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
                 <Button
                   variant="ghost"
                   onClick={() => handleNavigation(item.to)}
-                  className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-muted/50"
+                  className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-gradient-primary/10 color-shift-primary ripple-effect"
                 >
                   <div className="flex items-start space-x-3">
-                    <div className="p-2 bg-primary/10 rounded-lg icon-bounce">
+                    <div className="p-2 bg-primary/20 rounded-lg icon-bounce hover:shadow-glow">
                       <item.icon className="h-4 w-4 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
