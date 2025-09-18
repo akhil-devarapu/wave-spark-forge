@@ -27,6 +27,75 @@ export default function Generate() {
   const progressPercentage = (userData.currentPoints / userData.nextLevelPoints) * 100;
 
   const handleGenerateCertificate = () => {
+    // Create canvas for certificate
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas size
+    canvas.width = 800;
+    canvas.height = 600;
+
+    // Background gradient
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#4f46e5');
+    gradient.addColorStop(1, '#7c3aed');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Border
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 8;
+    ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
+
+    // Inner border
+    ctx.lineWidth = 2;
+    ctx.strokeRect(60, 60, canvas.width - 120, canvas.height - 120);
+
+    // Title
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 48px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 150);
+
+    // Subtitle
+    ctx.font = '24px Arial';
+    ctx.fillText('in Generative AI', canvas.width / 2, 190);
+
+    // User name
+    ctx.font = 'bold 36px Arial';
+    ctx.fillText('John Doe', canvas.width / 2, 280);
+
+    // Achievement text
+    ctx.font = '20px Arial';
+    ctx.fillText('has successfully completed', canvas.width / 2, 320);
+
+    // Level
+    ctx.font = 'bold 32px Arial';
+    ctx.fillText(`Level ${userData.level} in GenAI`, canvas.width / 2, 370);
+
+    // Stats
+    ctx.font = '18px Arial';
+    ctx.fillText(`${userData.currentPoints} Points • ${userData.totalProjects} Projects • ${userData.contestsParticipated} Contests`, canvas.width / 2, 420);
+
+    // Date
+    const date = new Date().toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+    ctx.fillText(date, canvas.width / 2, 480);
+
+    // Download the certificate
+    const link = document.createElement('a');
+    link.download = `GenAI-Certificate-Level-${userData.level}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+
+    console.log("Certificate downloaded!");
+  };
+
+  const handleShowCertificateBanner = () => {
     setShowCertificateBanner(true);
   };
 
@@ -80,7 +149,11 @@ export default function Generate() {
                   </div>
 
                   <div className="flex space-x-3">
-                    <Button variant="secondary" className="bg-white text-primary hover:bg-white/90">
+                    <Button 
+                      onClick={handleGenerateCertificate}
+                      variant="secondary" 
+                      className="bg-white text-primary hover:bg-white/90"
+                    >
                       Generate Certificate
                     </Button>
                     <Button 
@@ -135,7 +208,7 @@ export default function Generate() {
               {/* Action Buttons */}
               <div className="flex justify-center space-x-4">
                 <Button 
-                  onClick={handleGenerateCertificate}
+                  onClick={handleShowCertificateBanner}
                   variant="outline"
                   className="hover:bg-primary hover:text-primary-foreground transition-smooth"
                 >
