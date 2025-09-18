@@ -9,7 +9,7 @@ interface SideMenuProps {
   onClose: () => void;
 }
 
-const menuItems = [
+const menuItemsBatch1 = [
   {
     icon: Gift,
     label: "Check Rewards",
@@ -21,7 +21,10 @@ const menuItems = [
     label: "Get Points",
     description: "Refer colleagues",
     to: "/refer"
-  },
+  }
+];
+
+const menuItemsBatch2 = [
   {
     icon: Lightbulb,
     label: "Get Inspired",
@@ -139,7 +142,7 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
           <SheetTitle className="text-left">About NxtWave</SheetTitle>
         </SheetHeader>
         
-        <div className="space-y-2">
+        <div className="space-y-4">
           {/* Generate Certificate Button - Special handling */}
           <div>
             <Button
@@ -159,26 +162,54 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
             </Button>
           </div>
 
-          {/* Other menu items */}
-          {menuItems.map((item) => (
-            <div key={item.label}>
-              <Button
-                variant="ghost"
-                onClick={() => handleNavigation(item.to)}
-                className="w-full justify-start h-auto p-4 text-left hover:bg-muted/50 transition-smooth"
-              >
-                <div className="flex items-start space-x-3">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <item.icon className="h-4 w-4 text-primary" />
+          {/* Batch 1 - Rewards & Points */}
+          <div className="space-y-2">
+            {menuItemsBatch1.map((item) => (
+              <div key={item.label}>
+                <Button
+                  variant="ghost"
+                  onClick={() => handleNavigation(item.to)}
+                  className="w-full justify-start h-auto p-4 text-left hover:bg-muted/50 transition-smooth"
+                >
+                  <div className="flex items-start space-x-3">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <item.icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium">{item.label}</p>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </div>
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-medium">{item.label}</p>
-                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                </Button>
+              </div>
+            ))}
+          </div>
+
+          {/* Separator */}
+          <div className="border-t border-muted my-4" />
+
+          {/* Batch 2 - Learning & Inspiration */}
+          <div className="space-y-2">
+            {menuItemsBatch2.map((item) => (
+              <div key={item.label}>
+                <Button
+                  variant="ghost"
+                  onClick={() => handleNavigation(item.to)}
+                  className="w-full justify-start h-auto p-4 text-left hover:bg-muted/50 transition-smooth"
+                >
+                  <div className="flex items-start space-x-3">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      <item.icon className="h-4 w-4 text-primary" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-medium">{item.label}</p>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </div>
                   </div>
-                </div>
-              </Button>
-            </div>
-          ))}
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
       </SheetContent>
     </Sheet>
