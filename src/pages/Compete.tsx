@@ -7,11 +7,9 @@ import { Trophy, Medal, Award, ArrowRight, Calendar, Users } from "lucide-react"
 import { Link } from "react-router-dom";
 
 const categories = [
-  "Machine Learning",
-  "Natural Language Processing", 
-  "Computer Vision",
-  "Robotics",
-  "Data Science"
+  "automation",
+  "fullstack product",
+  "automation+ui"
 ];
 
 const leaderboard = [

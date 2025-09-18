@@ -13,11 +13,9 @@ import { toast } from "sonner";
 
 // Data
 const categories = [
-  "Machine Learning",
-  "Natural Language Processing", 
-  "Computer Vision",
-  "Robotics",
-  "Data Science"
+  "automation",
+  "fullstack product",
+  "automation+ui"
 ];
 
 const leaderboard = [
