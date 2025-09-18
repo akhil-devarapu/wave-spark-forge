@@ -7,6 +7,7 @@ import { Header } from "@/components/header";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Award, X } from "lucide-react";
 import { toast } from "sonner";
 import Index from "./pages/Index";
@@ -134,7 +135,9 @@ const AppContent = () => {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center justify-between">
-              Your Progress
+              <Badge variant="default" className="text-lg px-4 py-2">
+                Level 5
+              </Badge>
               <Button
                 variant="ghost"
                 size="sm"
@@ -144,9 +147,6 @@ const AppContent = () => {
                 <X className="h-4 w-4" />
               </Button>
             </DialogTitle>
-            <DialogDescription>
-              View your achievements and generate your certificate
-            </DialogDescription>
           </DialogHeader>
           
           <div className="space-y-6 py-4">
