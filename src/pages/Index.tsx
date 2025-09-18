@@ -7,8 +7,8 @@ import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Award, Upload, CheckCircle, Clock, Star, Trophy, TrendingUp, ArrowRight, Calendar, Medal } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Award, Upload, CheckCircle, Clock, Star, Trophy, TrendingUp, ArrowRight, Calendar, Medal, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 // Data
 const categories = [
@@ -57,10 +57,33 @@ const topProducts = [
 const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [showInstructions, setShowInstructions] = useState(false);
+  const [showLevelUpPopup, setShowLevelUpPopup] = useState(false);
+  const navigate = useNavigate();
+
+  // User stats data
+  const userStats = {
+    points: 2340,
+    projects: 8,
+    contestsParticipated: 3
+  };
 
   const handleJoinContest = () => {
     if (!selectedCategory) return;
     setShowInstructions(true);
+  };
+
+  const handleLevelUpClick = () => {
+    setShowLevelUpPopup(true);
+  };
+
+  const handleCloseLevelUp = () => {
+    setShowLevelUpPopup(false);
+    navigate("/generate");
+  };
+
+  const handleGenerateCertificate = () => {
+    // Certificate generation logic would go here
+    console.log("Generating certificate...");
   };
 
   return (
@@ -77,14 +100,13 @@ const Index = () => {
               Compete
             </Button>
             
-            <Link to="/generate">
-              <Button 
-                variant="outline"
-                className="hover:bg-primary hover:text-primary-foreground transition-smooth"
-              >
-                Level Up
-              </Button>
-            </Link>
+            <Button 
+              onClick={handleLevelUpClick}
+              variant="outline"
+              className="hover:bg-primary hover:text-primary-foreground transition-smooth"
+            >
+              Level Up
+            </Button>
           </div>
         </section>
 
@@ -227,6 +249,64 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Level Up Popup */}
+        <Dialog open={showLevelUpPopup} onOpenChange={setShowLevelUpPopup}>
+          <DialogContent className="max-w-md">
+            <DialogHeader>
+              <DialogTitle className="flex items-center justify-between">
+                Your Progress
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setShowLevelUpPopup(false)}
+                  className="h-6 w-6 p-0"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </DialogTitle>
+              <DialogDescription>
+                View your achievements and generate your certificate
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="space-y-6 py-4">
+              {/* Stats Grid */}
+              <div className="grid grid-cols-3 gap-4">
+                <div className="text-center p-4 bg-muted/50 rounded-lg">
+                  <div className="text-2xl font-bold text-primary">{userStats.points.toLocaleString()}</div>
+                  <div className="text-sm text-muted-foreground">Points</div>
+                </div>
+                <div className="text-center p-4 bg-muted/50 rounded-lg">
+                  <div className="text-2xl font-bold text-primary">{userStats.projects}</div>
+                  <div className="text-sm text-muted-foreground">Projects</div>
+                </div>
+                <div className="text-center p-4 bg-muted/50 rounded-lg">
+                  <div className="text-2xl font-bold text-primary">{userStats.contestsParticipated}</div>
+                  <div className="text-sm text-muted-foreground">Contests</div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-3">
+                <Button 
+                  onClick={handleGenerateCertificate}
+                  className="bg-gradient-primary hover:opacity-90 transition-smooth w-full"
+                >
+                  <Award className="h-4 w-4 mr-2" />
+                  Generate Certificate
+                </Button>
+                <Button 
+                  onClick={handleCloseLevelUp}
+                  variant="outline"
+                  className="w-full"
+                >
+                  Continue to Level Up
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
 
       </div>
     </div>
