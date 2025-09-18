@@ -26,12 +26,12 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       onClick={toggleTheme}
-      className="hover:bg-muted transition-smooth"
+      className="hover:bg-muted transition-all duration-200 hover:scale-110 active:scale-95 hover:rotate-12"
     >
       {theme === "light" ? (
-        <Moon className="h-5 w-5" />
+        <Moon className="h-5 w-5 transition-transform duration-200" />
       ) : (
-        <Sun className="h-5 w-5" />
+        <Sun className="h-5 w-5 transition-transform duration-200" />
       )}
       <span className="sr-only">Toggle theme</span>
     </Button>

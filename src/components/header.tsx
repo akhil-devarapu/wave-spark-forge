@@ -29,7 +29,7 @@ export function Header({ onLevelUpClick }: HeaderProps) {
     <>
       <header className="w-full border-b bg-background/80 backdrop-blur-md sticky top-0 z-50">
         <div className="container mx-auto px-6">
-          <div className="flex h-16 items-center">
+          <div className="flex h-20 items-center">
             {/* Logo - Left */}
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center hover:opacity-80 transition-smooth">
@@ -46,7 +46,7 @@ export function Header({ onLevelUpClick }: HeaderProps) {
               <div className="flex items-center gap-3">
                 <Button 
                   onClick={handleCompeteClick}
-                  className="btn-primary-interactive text-white font-medium"
+                  className="btn-primary-interactive text-white font-medium hover:scale-105 hover:shadow-glow transition-all duration-300 active:scale-95"
                   size="sm"
                 >
                   Compete
@@ -55,7 +55,7 @@ export function Header({ onLevelUpClick }: HeaderProps) {
                 <Button 
                   onClick={onLevelUpClick}
                   variant="outline"
-                  className="btn-interactive hover:bg-primary hover:text-primary-foreground font-medium"
+                  className="btn-interactive hover:bg-primary hover:text-primary-foreground font-medium hover:scale-105 hover:shadow-elegant transition-all duration-300 active:scale-95 border-2"
                   size="sm"
                 >
                   Level Up
@@ -70,7 +70,7 @@ export function Header({ onLevelUpClick }: HeaderProps) {
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsSideMenuOpen(true)}
-                className="btn-interactive hover:bg-muted"
+                className="btn-interactive hover:bg-muted hover:scale-110 transition-all duration-200 active:scale-95"
               >
                 <Menu className="h-5 w-5 icon-pulse" />
                 <span className="sr-only">Open menu</span>
