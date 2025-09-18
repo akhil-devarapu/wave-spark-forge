@@ -109,8 +109,8 @@ export default function Products() {
     const matchesSearch = product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.author.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = !selectedCategory || product.category === selectedCategory;
-    const matchesDepartment = !selectedDepartment || product.department === selectedDepartment;
+    const matchesCategory = !selectedCategory || selectedCategory === "all-categories" || product.category === selectedCategory;
+    const matchesDepartment = !selectedDepartment || selectedDepartment === "all-departments" || product.department === selectedDepartment;
     
     return matchesSearch && matchesCategory && matchesDepartment;
   });
@@ -160,7 +160,7 @@ export default function Products() {
                     <SelectValue placeholder="All Categories" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Categories</SelectItem>
+                    <SelectItem value="all-categories">All Categories</SelectItem>
                     {categories.map((category) => (
                       <SelectItem key={category} value={category}>
                         {category}
@@ -174,7 +174,7 @@ export default function Products() {
                     <SelectValue placeholder="All Departments" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All Departments</SelectItem>
+                    <SelectItem value="all-departments">All Departments</SelectItem>
                     {departments.map((department) => (
                       <SelectItem key={department} value={department}>
                         {department}
