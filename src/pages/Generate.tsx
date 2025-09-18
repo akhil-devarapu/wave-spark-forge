@@ -189,13 +189,6 @@ export default function Generate() {
 
         {/* Project Snapshot */}
         <section className="space-y-6">
-          <div className="text-center space-y-4">
-            <h1 className="text-4xl font-bold">Level Up Your Skills</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Upload your AI projects and advance through the levels
-            </p>
-          </div>
-
           <Card className="max-w-4xl mx-auto shadow-medium">
             <CardHeader className="text-center">
               <CardTitle className="text-2xl">Your Progress</CardTitle>
