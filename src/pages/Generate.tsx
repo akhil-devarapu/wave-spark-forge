@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Award, Upload, CheckCircle, Clock, XCircle, Star, Trophy, TrendingUp } from "lucide-react";
+import { Award, Upload, CheckCircle, Clock, Star, Trophy, TrendingUp } from "lucide-react";
 
 export default function Generate() {
   const [showCertificateBanner, setShowCertificateBanner] = useState(false);
