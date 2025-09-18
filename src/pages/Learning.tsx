@@ -1,126 +1,116 @@
-import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, Play, Clock, CheckCircle, Star, TrendingUp, Award, Calendar } from "lucide-react";
-import { toast } from "sonner";
+import { ExternalLink, Sparkles, Zap, Brain, Code, Image, Music, Video, MessageSquare } from "lucide-react";
 
-const courses = [
+const aiTools = [
   {
     id: 1,
-    title: "Machine Learning Fundamentals",
-    description: "Complete introduction to ML concepts and algorithms",
-    level: "Beginner",
-    duration: "6 hours",
-    lessons: 12,
-    progress: 75,
-    rating: 4.8,
-    students: 1250,
-    category: "Machine Learning",
-    thumbnail: "🤖",
-    status: "in-progress"
+    name: "ChatGPT-4o",
+    description: "OpenAI's latest multimodal AI model with advanced reasoning and conversation capabilities",
+    category: "Language Model",
+    icon: <MessageSquare className="h-6 w-6" />,
+    link: "https://chat.openai.com",
+    features: ["Multimodal inputs", "Advanced reasoning", "Code generation", "Real-time web browsing"],
+    releaseDate: "2024",
+    badge: "Latest"
   },
   {
     id: 2,
-    title: "Deep Learning with Python",
-    description: "Build neural networks from scratch using Python and TensorFlow",
-    level: "Intermediate", 
-    duration: "12 hours",
-    lessons: 20,
-    progress: 0,
-    rating: 4.9,
-    students: 890,
-    category: "Deep Learning",
-    thumbnail: "🧠",
-    status: "not-started"
+    name: "Claude 3.5 Sonnet",
+    description: "Anthropic's most capable AI assistant with enhanced coding and analysis abilities",
+    category: "AI Assistant",
+    icon: <Brain className="h-6 w-6" />,
+    link: "https://claude.ai",
+    features: ["Long context", "Coding expertise", "Document analysis", "Creative writing"],
+    releaseDate: "2024",
+    badge: "Popular"
   },
   {
     id: 3,
-    title: "Computer Vision Essentials",
-    description: "Learn image processing and computer vision techniques",
-    level: "Intermediate",
-    duration: "8 hours", 
-    lessons: 15,
-    progress: 100,
-    rating: 4.7,
-    students: 750,
-    category: "Computer Vision",
-    thumbnail: "👁️",
-    status: "completed"
+    name: "DALL-E 3",
+    description: "Advanced AI image generation with improved accuracy and creative capabilities",
+    category: "Image Generation",
+    icon: <Image className="h-6 w-6" />,
+    link: "https://openai.com/dall-e-3",
+    features: ["High-quality images", "Text integration", "Style consistency", "Creative freedom"],
+    releaseDate: "2024",
+    badge: "Creative"
   },
   {
     id: 4,
-    title: "NLP and Text Analytics", 
-    description: "Process and analyze text data with modern NLP techniques",
-    level: "Advanced",
-    duration: "10 hours",
-    lessons: 18,
-    progress: 30,
-    rating: 4.6,
-    students: 650,
-    category: "NLP",
-    thumbnail: "💬",
-    status: "in-progress"
+    name: "GitHub Copilot",
+    description: "AI-powered code completion and generation tool integrated with your IDE",
+    category: "Code Assistant",
+    icon: <Code className="h-6 w-6" />,
+    link: "https://github.com/features/copilot",
+    features: ["Real-time coding", "Multi-language support", "Context awareness", "Code explanation"],
+    releaseDate: "2024",
+    badge: "Developer"
+  },
+  {
+    id: 5,
+    name: "Midjourney V6",
+    description: "State-of-the-art AI art generator with photorealistic and artistic capabilities",
+    category: "Art Generation",
+    icon: <Sparkles className="h-6 w-6" />,
+    link: "https://midjourney.com",
+    features: ["Photorealistic art", "Style variations", "High resolution", "Advanced prompting"],
+    releaseDate: "2024",
+    badge: "Artistic"
+  },
+  {
+    id: 6,
+    name: "Suno AI",
+    description: "AI music generator that creates songs from text prompts with vocals and instruments",
+    category: "Music Generation",
+    icon: <Music className="h-6 w-6" />,
+    link: "https://suno.ai",
+    features: ["Full song creation", "Custom lyrics", "Multiple genres", "High-quality audio"],
+    releaseDate: "2024",
+    badge: "Music"
+  },
+  {
+    id: 7,
+    name: "RunwayML Gen-3",
+    description: "Advanced AI video generation platform for creating professional video content",
+    category: "Video Generation",
+    icon: <Video className="h-6 w-6" />,
+    link: "https://runwayml.com",
+    features: ["Video generation", "Motion control", "Style transfer", "AI editing"],
+    releaseDate: "2024",
+    badge: "Video"
+  },
+  {
+    id: 8,
+    name: "Perplexity AI",
+    description: "AI-powered search engine that provides real-time information with source citations",
+    category: "Search & Research",
+    icon: <Zap className="h-6 w-6" />,
+    link: "https://perplexity.ai",
+    features: ["Real-time search", "Source citations", "Follow-up questions", "Academic research"],
+    releaseDate: "2024",
+    badge: "Research"
   }
 ];
 
-const articles = [
-  {
-    id: 1,
-    title: "The Future of Generative AI in 2025",
-    description: "Exploring the latest trends and breakthroughs in generative artificial intelligence",
-    readTime: "8 min read",
-    category: "Trends",
-    publishDate: "2024-12-15",
-    featured: true
-  },
-  {
-    id: 2, 
-    title: "Building Robust AI Systems: Best Practices",
-    description: "Essential guidelines for developing reliable and scalable AI applications",
-    readTime: "12 min read",
-    category: "Best Practices", 
-    publishDate: "2024-12-12",
-    featured: false
-  },
-  {
-    id: 3,
-    title: "Ethics in AI: A Comprehensive Guide",
-    description: "Understanding the ethical implications and responsibilities in AI development",
-    readTime: "15 min read",
-    category: "Ethics",
-    publishDate: "2024-12-10",
-    featured: true
+const getBadgeVariant = (badge: string) => {
+  switch (badge) {
+    case "Latest": return "default";
+    case "Popular": return "secondary";
+    case "Creative": return "outline";
+    case "Developer": return "destructive";
+    case "Artistic": return "default";
+    case "Music": return "secondary";
+    case "Video": return "outline";
+    case "Research": return "destructive";
+    default: return "secondary";
   }
-];
-
-const achievements = [
-  { title: "Course Completionist", description: "Completed first course", earned: true, icon: "🎓" },
-  { title: "Speed Learner", description: "Finished 3 lessons in one day", earned: true, icon: "⚡" },
-  { title: "Knowledge Seeker", description: "Read 10 articles", earned: false, icon: "📚" },
-  { title: "AI Expert", description: "Complete advanced track", earned: false, icon: "🏆" }
-];
+};
 
 export default function Learning() {
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  
-  const categories = ["all", "Machine Learning", "Deep Learning", "Computer Vision", "NLP"];
-  const filteredCourses = selectedCategory === "all" 
-    ? courses 
-    : courses.filter(course => course.category === selectedCategory);
-
-  const startCourse = (courseId: number, title: string) => {
-    toast.success(`🚀 Starting "${title}"!`);
-  };
-
-  const continueCourse = (courseId: number, title: string) => {
-    toast.info(`📖 Continuing "${title}"...`);
-  };
-
-  const readArticle = (title: string) => {
-    toast.info(`📰 Opening "${title}"...`);
+  const openTool = (link: string, name: string) => {
+    window.open(link, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -129,227 +119,120 @@ export default function Learning() {
         
         {/* Header */}
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-bold">Keep Learning</h1>
+          <h1 className="text-4xl font-bold">Recent AI Tool Advancements</h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Expand your AI knowledge with courses, articles, and hands-on projects
+            Discover the latest AI tools and technologies that are shaping the future
           </p>
         </div>
 
-        {/* Learning Stats */}
+        {/* AI Tools Grid */}
+        <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
+          {aiTools.map((tool) => (
+            <Card 
+              key={tool.id} 
+              className="hover:shadow-medium transition-smooth cursor-pointer border hover:border-primary/50"
+              onClick={() => openTool(tool.link, tool.name)}
+            >
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                      {tool.icon}
+                    </div>
+                    <div>
+                      <Badge variant={getBadgeVariant(tool.badge)}>
+                        {tool.badge}
+                      </Badge>
+                    </div>
+                  </div>
+                  <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                </div>
+                <CardTitle className="text-xl hover:text-primary transition-smooth">
+                  {tool.name}
+                </CardTitle>
+                <CardDescription>{tool.description}</CardDescription>
+              </CardHeader>
+              
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between text-sm">
+                  <Badge variant="outline">{tool.category}</Badge>
+                  <span className="text-muted-foreground">Released {tool.releaseDate}</span>
+                </div>
+                
+                <div className="space-y-2">
+                  <h4 className="font-medium text-sm">Key Features:</h4>
+                  <div className="grid grid-cols-2 gap-1">
+                    {tool.features.map((feature, index) => (
+                      <div key={index} className="flex items-center space-x-2 text-sm text-muted-foreground">
+                        <div className="w-1 h-1 bg-primary rounded-full"></div>
+                        <span>{feature}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <Button 
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openTool(tool.link, tool.name);
+                  }}
+                  className="w-full mt-4"
+                  variant="outline"
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Try {tool.name}
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Additional Resources */}
         <Card className="shadow-medium">
-          <CardContent className="p-6">
-            <div className="grid md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">4</div>
-                <p className="text-sm text-muted-foreground">Courses Enrolled</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-success">1</div>
-                <p className="text-sm text-muted-foreground">Completed</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-amber-600">26h</div>
-                <p className="text-sm text-muted-foreground">Learning Time</p>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary">8</div>
-                <p className="text-sm text-muted-foreground">Certificates Earned</p>
-              </div>
+          <CardHeader>
+            <CardTitle className="flex items-center space-x-2">
+              <Sparkles className="h-5 w-5 text-primary" />
+              <span>Stay Updated</span>
+            </CardTitle>
+            <CardDescription>
+              The AI landscape is evolving rapidly. Here are some resources to stay informed about the latest developments.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid md:grid-cols-3 gap-4">
+              <Button 
+                variant="outline" 
+                className="justify-start h-auto p-4"
+                onClick={() => window.open('https://twitter.com/OpenAI', '_blank')}
+              >
+                <div className="text-left">
+                  <div className="font-medium">OpenAI Updates</div>
+                  <div className="text-sm text-muted-foreground">Latest from OpenAI</div>
+                </div>
+              </Button>
+              <Button 
+                variant="outline" 
+                className="justify-start h-auto p-4"
+                onClick={() => window.open('https://www.anthropic.com/news', '_blank')}
+              >
+                <div className="text-left">
+                  <div className="font-medium">Anthropic News</div>
+                  <div className="text-sm text-muted-foreground">Claude developments</div>
+                </div>
+              </Button>
+              <Button 
+                variant="outline" 
+                className="justify-start h-auto p-4"
+                onClick={() => window.open('https://airesearch.com', '_blank')}
+              >
+                <div className="text-left">
+                  <div className="font-medium">AI Research</div>
+                  <div className="text-sm text-muted-foreground">Latest papers & trends</div>
+                </div>
+              </Button>
             </div>
           </CardContent>
         </Card>
-
-        <Tabs defaultValue="courses" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="courses">Courses</TabsTrigger>
-            <TabsTrigger value="articles">Articles</TabsTrigger>
-            <TabsTrigger value="achievements">Achievements</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="courses" className="space-y-6">
-            
-            {/* Category Filter */}
-            <Card className="shadow-medium">
-              <CardContent className="p-4">
-                <div className="flex flex-wrap gap-2">
-                  {categories.map((category) => (
-                    <Button
-                      key={category}
-                      variant={selectedCategory === category ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSelectedCategory(category)}
-                    >
-                      {category === "all" ? "All Categories" : category}
-                    </Button>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Courses Grid */}
-            <div className="grid lg:grid-cols-2 gap-6">
-              {filteredCourses.map((course) => (
-                <Card key={course.id} className="hover:shadow-medium transition-smooth">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="text-3xl">{course.thumbnail}</div>
-                        <div>
-                          <Badge variant={
-                            course.level === "Beginner" ? "secondary" :
-                            course.level === "Intermediate" ? "default" : "destructive"
-                          }>
-                            {course.level}
-                          </Badge>
-                        </div>
-                      </div>
-                      <Badge variant="outline">{course.category}</Badge>
-                    </div>
-                    <CardTitle className="text-xl">{course.title}</CardTitle>
-                    <CardDescription>{course.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    
-                    {/* Course Metadata */}
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center space-x-1">
-                          <Clock className="h-4 w-4" />
-                          <span>{course.duration}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <BookOpen className="h-4 w-4" />
-                          <span>{course.lessons} lessons</span>
-                        </div>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-                        <span>{course.rating}</span>
-                        <span>({course.students})</span>
-                      </div>
-                    </div>
-
-                    {/* Progress Bar */}
-                    {course.progress > 0 && (
-                      <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
-                          <span>Progress</span>
-                          <span>{course.progress}%</span>
-                        </div>
-                        <Progress value={course.progress} className="h-2" />
-                      </div>
-                    )}
-
-                    {/* Action Button */}
-                    <Button 
-                      onClick={() => 
-                        course.status === "not-started" 
-                          ? startCourse(course.id, course.title)
-                          : continueCourse(course.id, course.title)
-                      }
-                      className="w-full"
-                      variant={course.status === "completed" ? "outline" : "default"}
-                    >
-                      {course.status === "not-started" && (
-                        <>
-                          <Play className="h-4 w-4 mr-2" />
-                          Start Course
-                        </>
-                      )}
-                      {course.status === "in-progress" && (
-                        <>
-                          <BookOpen className="h-4 w-4 mr-2" />
-                          Continue Learning
-                        </>
-                      )}
-                      {course.status === "completed" && (
-                        <>
-                          <CheckCircle className="h-4 w-4 mr-2" />
-                          Completed
-                        </>
-                      )}
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="articles" className="space-y-6">
-            <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6">
-              {articles.map((article) => (
-                <Card 
-                  key={article.id} 
-                  className={`hover:shadow-medium transition-smooth cursor-pointer ${
-                    article.featured ? "border-primary/50" : ""
-                  }`}
-                  onClick={() => readArticle(article.title)}
-                >
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <Badge variant={article.featured ? "default" : "secondary"}>
-                        {article.category}
-                      </Badge>
-                      {article.featured && <Star className="h-4 w-4 text-amber-500" />}
-                    </div>
-                    <CardTitle className="text-lg hover:text-primary transition-smooth">
-                      {article.title}
-                    </CardTitle>
-                    <CardDescription>{article.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <div className="flex items-center space-x-1">
-                        <Clock className="h-4 w-4" />
-                        <span>{article.readTime}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Calendar className="h-4 w-4" />
-                        <span>{article.publishDate}</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-
-          <TabsContent value="achievements" className="space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              {achievements.map((achievement) => (
-                <Card 
-                  key={achievement.title}
-                  className={`hover:shadow-medium transition-smooth ${
-                    achievement.earned ? "border-success/50 bg-success/5" : "opacity-60"
-                  }`}
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-center space-x-4">
-                      <div className={`text-4xl p-3 rounded-full ${
-                        achievement.earned ? "bg-success/10" : "bg-muted/30"
-                      }`}>
-                        {achievement.icon}
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-bold text-lg flex items-center space-x-2">
-                          <span>{achievement.title}</span>
-                          {achievement.earned && <CheckCircle className="h-5 w-5 text-success" />}
-                        </h3>
-                        <p className="text-muted-foreground">{achievement.description}</p>
-                        <Badge 
-                          variant={achievement.earned ? "default" : "secondary"}
-                          className="mt-2"
-                        >
-                          {achievement.earned ? "Earned" : "Locked"}
-                        </Badge>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </TabsContent>
-        </Tabs>
       </div>
     </div>
   );
