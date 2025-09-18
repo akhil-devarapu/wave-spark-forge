@@ -129,7 +129,7 @@ export default function Compete() {
           <div className="space-y-6">
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-2">Leaderboard</h3>
-              <p className="text-muted-foreground">Top performers in our AI community</p>
+              <p className="text-muted-foreground">AI power users in leader board</p>
             </div>
 
             <Card className="shadow-medium max-w-4xl mx-auto">
