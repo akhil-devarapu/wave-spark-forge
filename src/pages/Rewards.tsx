@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Gift, Trophy, Medal, Award, Star, Calendar, Download } from "lucide-react";
 import { toast } from "sonner";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const rewards = [
   {
@@ -59,8 +60,8 @@ export default function Rewards() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-6 py-8 space-y-8">
+    <AuroraBackground className="min-h-screen">
+      <div className="container mx-auto px-6 py-8 space-y-8 relative z-10">
         
         {/* Header */}
         <div className="text-center space-y-4">
@@ -227,6 +228,6 @@ export default function Rewards() {
           </div>
         </div>
       </div>
-    </div>
+    </AuroraBackground>
   );
 }

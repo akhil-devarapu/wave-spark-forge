@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Trophy, Medal, Award, ArrowRight, Calendar, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const categories = [
   "automation",
@@ -57,8 +58,8 @@ export default function Compete() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-6 py-8 space-y-12">
+    <AuroraBackground className="min-h-screen">
+      <div className="container mx-auto px-6 py-8 space-y-12 relative z-10">
         
         {/* Compete Section */}
         <section className="space-y-8 max-w-7xl mx-auto">
@@ -202,6 +203,6 @@ export default function Compete() {
           </div>
         </section>
       </div>
-    </div>
+    </AuroraBackground>
   );
 }

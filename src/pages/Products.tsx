@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, ExternalLink, Star, Users } from "lucide-react";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const allProducts = [
   {
@@ -122,8 +123,8 @@ export default function Products() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-6 py-8 space-y-8">
+    <AuroraBackground className="min-h-screen">
+      <div className="container mx-auto px-6 py-8 space-y-8 relative z-10">
         
         {/* Header */}
         <div className="text-center space-y-4">
@@ -254,6 +255,6 @@ export default function Products() {
           </div>
         )}
       </div>
-    </div>
+    </AuroraBackground>
   );
 }

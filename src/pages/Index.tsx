@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Award, Upload, CheckCircle, Clock, Star, Trophy, TrendingUp, ArrowRight, Calendar, Medal, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 // Data
 const categories = [
@@ -74,8 +75,8 @@ const Index = ({}: IndexProps) => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-6 py-8 space-y-12">
+    <AuroraBackground className="min-h-screen">
+      <div className="container mx-auto px-6 py-8 space-y-12 relative z-10">
         
 
 
@@ -221,7 +222,7 @@ const Index = ({}: IndexProps) => {
         </section>
 
       </div>
-    </div>
+    </AuroraBackground>
   );
 };
 

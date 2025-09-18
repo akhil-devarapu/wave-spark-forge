@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Share2, Users, Gift, Copy, Mail, MessageSquare, Trophy, Star } from "lucide-react";
 import { toast } from "sonner";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 const referralStats = {
   totalReferrals: 12,
@@ -87,8 +88,8 @@ export default function Refer() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
-      <div className="container mx-auto px-6 py-8 space-y-8">
+    <AuroraBackground className="min-h-screen">
+      <div className="container mx-auto px-6 py-8 space-y-8 relative z-10">
         
         {/* Header */}
         <div className="text-center space-y-4">
@@ -232,6 +233,6 @@ export default function Refer() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </AuroraBackground>
   );
 }
