@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Award, Upload, CheckCircle, Clock, Star, Trophy, TrendingUp, ArrowRight, Calendar, Medal, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 // Data
 const categories = [
@@ -82,73 +83,86 @@ const Index = () => {
   };
 
   const handleGenerateCertificate = () => {
-    // Create canvas for certificate
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    try {
+      // Create canvas for certificate
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx) {
+        toast.error("Failed to create certificate");
+        return;
+      }
 
-    // Set canvas size
-    canvas.width = 800;
-    canvas.height = 600;
+      // Set canvas size
+      canvas.width = 800;
+      canvas.height = 600;
 
-    // Background gradient
-    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    gradient.addColorStop(0, '#4f46e5');
-    gradient.addColorStop(1, '#7c3aed');
-    ctx.fillStyle = gradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Background gradient
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#4f46e5');
+      gradient.addColorStop(1, '#7c3aed');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Border
-    ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 8;
-    ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
+      // Border
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 8;
+      ctx.strokeRect(40, 40, canvas.width - 80, canvas.height - 80);
 
-    // Inner border
-    ctx.lineWidth = 2;
-    ctx.strokeRect(60, 60, canvas.width - 120, canvas.height - 120);
+      // Inner border
+      ctx.lineWidth = 2;
+      ctx.strokeRect(60, 60, canvas.width - 120, canvas.height - 120);
 
-    // Title
-    ctx.fillStyle = '#ffffff';
-    ctx.font = 'bold 48px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 150);
+      // Title
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 48px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText('CERTIFICATE OF ACHIEVEMENT', canvas.width / 2, 150);
 
-    // Subtitle
-    ctx.font = '24px Arial';
-    ctx.fillText('in Generative AI', canvas.width / 2, 190);
+      // Subtitle
+      ctx.font = '24px Arial';
+      ctx.fillText('in Generative AI', canvas.width / 2, 190);
 
-    // User name
-    ctx.font = 'bold 36px Arial';
-    ctx.fillText('John Doe', canvas.width / 2, 280);
+      // User name
+      ctx.font = 'bold 36px Arial';
+      ctx.fillText('John Doe', canvas.width / 2, 280);
 
-    // Achievement text
-    ctx.font = '20px Arial';
-    ctx.fillText('has successfully completed', canvas.width / 2, 320);
+      // Achievement text
+      ctx.font = '20px Arial';
+      ctx.fillText('has successfully completed', canvas.width / 2, 320);
 
-    // Level
-    const level = Math.floor(userStats.points / 500) + 1;
-    ctx.font = 'bold 32px Arial';
-    ctx.fillText(`Level ${level} in GenAI`, canvas.width / 2, 370);
+      // Level
+      const level = Math.floor(userStats.points / 500) + 1;
+      ctx.font = 'bold 32px Arial';
+      ctx.fillText(`Level ${level} in GenAI`, canvas.width / 2, 370);
 
-    // Stats
-    ctx.font = '18px Arial';
-    ctx.fillText(`${userStats.points} Points • ${userStats.projects} Projects • ${userStats.contestsParticipated} Contests`, canvas.width / 2, 420);
+      // Stats
+      ctx.font = '18px Arial';
+      ctx.fillText(`${userStats.points} Points • ${userStats.projects} Projects • ${userStats.contestsParticipated} Contests`, canvas.width / 2, 420);
 
-    // Date
-    const date = new Date().toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
-    ctx.fillText(date, canvas.width / 2, 480);
+      // Date
+      const date = new Date().toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
+      ctx.fillText(date, canvas.width / 2, 480);
 
-    // Download the certificate
-    const link = document.createElement('a');
-    link.download = `GenAI-Certificate-Level-${level}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+      // Download the certificate
+      const link = document.createElement('a');
+      link.download = `GenAI-Certificate-Level-${level}.png`;
+      link.href = canvas.toDataURL('image/png');
+      
+      // Ensure the download works across browsers
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-    console.log("Certificate downloaded!");
+      toast.success("Certificate downloaded successfully!");
+      console.log("Certificate downloaded!");
+    } catch (error) {
+      toast.error("Failed to generate certificate");
+      console.error("Certificate generation error:", error);
+    }
   };
 
   return (
