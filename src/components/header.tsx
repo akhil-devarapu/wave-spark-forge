@@ -28,46 +28,54 @@ export function Header({ onLevelUpClick }: HeaderProps) {
   return (
     <>
       <header className="w-full border-b bg-background/80 backdrop-blur-md sticky top-0 z-50">
-        <div className="container flex h-16 items-center justify-between px-6">
-          {/* Logo */}
-          <Link to="/" className="flex items-center hover:opacity-80 transition-smooth">
-            <img 
-              src={nxtWaveLogo} 
-              alt="NXT WAVE" 
-              className="h-10 w-auto"
-            />
-          </Link>
+        <div className="container mx-auto px-6">
+          <div className="flex h-16 items-center">
+            {/* Logo - Left */}
+            <div className="flex-shrink-0">
+              <Link to="/" className="flex items-center hover:opacity-80 transition-smooth">
+                <img 
+                  src={nxtWaveLogo} 
+                  alt="NXT WAVE" 
+                  className="h-10 w-auto"
+                />
+              </Link>
+            </div>
 
-          {/* Center Action Buttons */}
-          <div className="flex items-center gap-4">
-            <Button 
-              onClick={handleCompeteClick}
-              className="bg-gradient-primary hover:opacity-90 transition-smooth"
-            >
-              Compete
-            </Button>
-            
-            <Button 
-              onClick={onLevelUpClick}
-              variant="outline"
-              className="hover:bg-primary hover:text-primary-foreground transition-smooth"
-            >
-              Level Up
-            </Button>
-          </div>
+            {/* Center Action Buttons */}
+            <div className="flex-1 flex justify-center">
+              <div className="flex items-center gap-3">
+                <Button 
+                  onClick={handleCompeteClick}
+                  className="bg-gradient-primary hover:opacity-90 transition-smooth text-white font-medium"
+                  size="sm"
+                >
+                  Compete
+                </Button>
+                
+                <Button 
+                  onClick={onLevelUpClick}
+                  variant="outline"
+                  className="hover:bg-primary hover:text-primary-foreground transition-smooth font-medium"
+                  size="sm"
+                >
+                  Level Up
+                </Button>
+              </div>
+            </div>
 
-          {/* Right Side Controls */}
-          <div className="flex items-center space-x-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsSideMenuOpen(true)}
-              className="hover:bg-muted transition-smooth"
-            >
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Open menu</span>
-            </Button>
+            {/* Right Side Controls */}
+            <div className="flex-shrink-0 flex items-center space-x-2">
+              <ThemeToggle />
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsSideMenuOpen(true)}
+                className="hover:bg-muted transition-smooth"
+              >
+                <Menu className="h-5 w-5" />
+                <span className="sr-only">Open menu</span>
+              </Button>
+            </div>
           </div>
         </div>
       </header>
