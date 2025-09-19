@@ -39,7 +39,7 @@ const AppContent = () => {
 
   const handleCloseLevelUp = () => {
     setShowLevelUpPopup(false);
-    navigate("/learning");
+    navigate("/generate");
   };
 
   const handleGenerateCertificate = () => {
@@ -133,7 +133,7 @@ const AppContent = () => {
       {/* Level Up Popup - Now Global */}
       <Dialog open={showLevelUpPopup} onOpenChange={(open) => {
         setShowLevelUpPopup(open);
-        if (!open) navigate("/learning");
+        if (!open) navigate("/generate");
       }}>
         <DialogContent className="max-w-md">
           <DialogHeader>
