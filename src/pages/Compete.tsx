@@ -5,59 +5,63 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import { Trophy, Medal, Award, ArrowRight, Calendar, Users } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const categories = [
-  "automation",
-  "fullstack product",
-  "automation+ui"
-];
-
-const leaderboard = [
-  { name: "Sarah Chen", score: 2840, projects: 12, rank: 1 },
-  { name: "Alex Rodriguez", score: 2650, projects: 10, rank: 2 },
-  { name: "Jamie Kim", score: 2480, projects: 9, rank: 3 },
-  { name: "Morgan Davis", score: 2320, projects: 8, rank: 4 },
-  { name: "Taylor Swift", score: 2180, projects: 7, rank: 5 }
-];
-
-const topProducts = [
-  {
-    id: 1,
-    title: "AI Customer Support Bot",
-    category: "NLP",
-    author: "Sarah Chen",
-    description: "Intelligent chatbot that handles 90% of customer queries",
-    image: "🤖"
-  },
-  {
-    id: 2,
-    title: "Smart Document Analyzer",
-    category: "Computer Vision",
-    author: "Alex Rodriguez", 
-    description: "Automatically extracts and categorizes document content",
-    image: "📄"
-  },
-  {
-    id: 3,
-    title: "Predictive Sales Analytics",
-    category: "Data Science",
-    author: "Jamie Kim",
-    description: "ML model that predicts sales trends with 95% accuracy",
-    image: "📊"
-  }
-];
-
+const categories = ["automation", "fullstack product", "automation+ui"];
+const leaderboard = [{
+  name: "Sarah Chen",
+  score: 2840,
+  projects: 12,
+  rank: 1
+}, {
+  name: "Alex Rodriguez",
+  score: 2650,
+  projects: 10,
+  rank: 2
+}, {
+  name: "Jamie Kim",
+  score: 2480,
+  projects: 9,
+  rank: 3
+}, {
+  name: "Morgan Davis",
+  score: 2320,
+  projects: 8,
+  rank: 4
+}, {
+  name: "Taylor Swift",
+  score: 2180,
+  projects: 7,
+  rank: 5
+}];
+const topProducts = [{
+  id: 1,
+  title: "AI Customer Support Bot",
+  category: "NLP",
+  author: "Sarah Chen",
+  description: "Intelligent chatbot that handles 90% of customer queries",
+  image: "🤖"
+}, {
+  id: 2,
+  title: "Smart Document Analyzer",
+  category: "Computer Vision",
+  author: "Alex Rodriguez",
+  description: "Automatically extracts and categorizes document content",
+  image: "📄"
+}, {
+  id: 3,
+  title: "Predictive Sales Analytics",
+  category: "Data Science",
+  author: "Jamie Kim",
+  description: "ML model that predicts sales trends with 95% accuracy",
+  image: "📊"
+}];
 export default function Compete() {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [showInstructions, setShowInstructions] = useState(false);
-
   const handleJoinContest = () => {
     if (!selectedCategory) return;
     setShowInstructions(true);
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-subtle">
+  return <div className="min-h-screen bg-gradient-subtle">
       <div className="container mx-auto px-6 py-8 space-y-12">
         
         {/* Compete Section */}
@@ -86,11 +90,9 @@ export default function Compete() {
                         <SelectValue placeholder="Choose category" />
                       </SelectTrigger>
                       <SelectContent>
-                        {categories.map((category) => (
-                          <SelectItem key={category} value={category}>
+                        {categories.map(category => <SelectItem key={category} value={category}>
                             {category}
-                          </SelectItem>
-                        ))}
+                          </SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
@@ -107,18 +109,13 @@ export default function Compete() {
 
                 {/* Join Button - Right */}
                 <div className="flex-shrink-0">
-                  <Button 
-                    onClick={handleJoinContest} 
-                    disabled={!selectedCategory}
-                    className="bg-gradient-primary hover:opacity-90 transition-smooth w-full sm:w-auto px-8"
-                  >
+                  <Button onClick={handleJoinContest} disabled={!selectedCategory} className="bg-gradient-primary hover:opacity-90 transition-smooth w-full sm:w-auto px-8">
                     Join Contest
                   </Button>
                 </div>
               </div>
 
-              {showInstructions && (
-                <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+              {showInstructions && <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
                   <h4 className="font-medium mb-2">Contest Instructions</h4>
                   <ul className="text-sm space-y-1 text-muted-foreground">
                     <li>• Build an innovative AI solution in your chosen category</li>
@@ -129,8 +126,7 @@ export default function Compete() {
                   <Button className="mt-3 w-full" size="sm">
                     Confirm Participation
                   </Button>
-                </div>
-              )}
+                </div>}
             </CardContent>
           </Card>
 
@@ -138,28 +134,16 @@ export default function Compete() {
           <div className="space-y-6">
             <div className="text-center">
               <h3 className="text-2xl font-bold mb-2">Leaderboard</h3>
-              <p className="text-muted-foreground">AI power users in leader board</p>
+              <p className="text-muted-foreground">AI power users </p>
             </div>
 
             <Card className="shadow-medium max-w-4xl mx-auto">
               <CardContent className="p-0">
                 <div className="space-y-0">
-                  {leaderboard.map((user, index) => (
-                    <div 
-                      key={user.name}
-                      className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-smooth ${
-                        index < leaderboard.length - 1 ? 'border-b' : ''
-                      }`}
-                    >
+                  {leaderboard.map((user, index) => <div key={user.name} className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-smooth ${index < leaderboard.length - 1 ? 'border-b' : ''}`}>
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary text-white font-bold">
-                          {user.rank <= 3 ? (
-                            user.rank === 1 ? <Trophy className="h-5 w-5" /> :
-                            user.rank === 2 ? <Medal className="h-5 w-5" /> :
-                            <Award className="h-5 w-5" />
-                          ) : (
-                            user.rank
-                          )}
+                          {user.rank <= 3 ? user.rank === 1 ? <Trophy className="h-5 w-5" /> : user.rank === 2 ? <Medal className="h-5 w-5" /> : <Award className="h-5 w-5" /> : user.rank}
                         </div>
                         <div>
                           <p className="font-medium">{user.name}</p>
@@ -169,8 +153,7 @@ export default function Compete() {
                       <Badge variant="secondary" className="text-lg font-bold px-3 py-1">
                         {user.score.toLocaleString()}
                       </Badge>
-                    </div>
-                  ))}
+                    </div>)}
                 </div>
               </CardContent>
             </Card>
@@ -192,8 +175,7 @@ export default function Compete() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {topProducts.map((product) => (
-                <Card key={product.id} className="hover:shadow-glow transition-smooth cursor-pointer">
+              {topProducts.map(product => <Card key={product.id} className="hover:shadow-glow transition-smooth cursor-pointer">
                   <CardContent className="p-6">
                     <div className="text-center space-y-4">
                       <div className="text-4xl mb-4">{product.image}</div>
@@ -205,12 +187,10 @@ export default function Compete() {
                       </div>
                     </div>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
           </div>
         </section>
       </div>
-    </div>
-  );
+    </div>;
 }
