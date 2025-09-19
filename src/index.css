@@ -16,10 +16,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 27%;
     
-    /* AI-inspired gradient primary */
-    --primary: 217 91% 60%;
+    /* Primary blue accent color */
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 217 91% 70%;
+    --primary-glow: 221 83% 63%;
     
     /* Subtle secondary */
     --secondary: 220 13% 97%;
@@ -43,16 +43,16 @@
     /* Borders and inputs */
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 217 91% 60%;
+    --ring: 221 83% 53%;
     
-    --radius: 0.75rem;
+    --radius: 1rem;
     
     /* Custom gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 60%), hsl(142 76% 73%));
+    --gradient-hero: linear-gradient(135deg, hsl(221 83% 53%), hsl(142 76% 73%));
     --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(220 13% 98%));
     --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(142 76% 80%));
-    --gradient-rainbow: linear-gradient(135deg, hsl(217 91% 60%), hsl(142 76% 73%), hsl(280 89% 85%));
+    --gradient-rainbow: linear-gradient(135deg, hsl(221 83% 53%), hsl(142 76% 73%), hsl(280 89% 85%));
     
     /* Enhanced Shadows with color */
     --shadow-subtle: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
@@ -94,9 +94,9 @@
     --popover: 215 28% 9%;
     --popover-foreground: 0 0% 95%;
     
-    --primary: 217 91% 70%;
+    --primary: 221 83% 63%;
     --primary-foreground: 215 28% 7%;
-    --primary-glow: 217 91% 80%;
+    --primary-glow: 221 83% 73%;
     
     --secondary: 215 28% 12%;
     --secondary-foreground: 0 0% 95%;
@@ -115,11 +115,11 @@
     
     --border: 215 28% 15%;
     --input: 215 28% 15%;
-    --ring: 217 91% 70%;
+    --ring: 221 83% 63%;
     
     /* Dark gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 70%), hsl(142 76% 60%));
+    --gradient-hero: linear-gradient(135deg, hsl(221 83% 63%), hsl(142 76% 60%));
     --gradient-subtle: linear-gradient(180deg, hsl(215 28% 7%), hsl(215 28% 9%));
   }
 }

@@ -63,8 +63,8 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
 
       // Background gradient
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, '#4f46e5');
-      gradient.addColorStop(1, '#7c3aed');
+      gradient.addColorStop(0, '#2563EB');
+      gradient.addColorStop(1, '#1D4ED8');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -131,47 +131,47 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent side="right" className="w-80">
+      <SheetContent side="right" className="w-80 bg-background shadow-lg">
         <SheetHeader className="pb-6">
-          <SheetTitle className="text-left">About NxtWave</SheetTitle>
+          <SheetTitle className="text-left text-2xl font-semibold">About NxtWave</SheetTitle>
         </SheetHeader>
         
-        <div className="space-y-4">
+        <div className="space-y-6">
           {/* Generate Certificate Button - Special handling */}
           <div>
             <Button
               variant="ghost"
               onClick={handleGenerateCertificate}
-              className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-gradient-primary/10 color-shift-primary ripple-effect"
+              className="w-full justify-start h-auto p-4 text-left rounded-2xl hover:bg-primary/10 hover:scale-105 transition-all ease-in-out duration-200"
             >
               <div className="flex items-start space-x-3">
-                <div className="p-2 bg-gradient-primary/20 rounded-lg icon-bounce hover:shadow-glow">
-                  <Award className="h-4 w-4 text-primary" />
+                <div className="p-2 bg-primary/20 rounded-2xl">
+                  <Award className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium">Generate Certificate</p>
-                  <p className="text-sm text-muted-foreground">Download your achievements</p>
+                  <p className="text-lg font-medium">Generate Certificate</p>
+                  <p className="text-base text-gray-700 dark:text-gray-300">Download your achievements</p>
                 </div>
               </div>
             </Button>
           </div>
 
           {/* Batch 1 - Rewards & Points */}
-          <div className="space-y-2">
+          <div className="space-y-3">
             {menuItemsBatch1.map((item) => (
               <div key={item.label}>
                 <Button
                   variant="ghost"
                   onClick={() => handleNavigation(item.to)}
-                  className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-gradient-accent/10 color-shift-accent ripple-effect"
+                  className="w-full justify-start h-auto p-4 text-left rounded-2xl hover:bg-accent/10 hover:scale-105 transition-all ease-in-out duration-200"
                 >
                   <div className="flex items-start space-x-3">
-                    <div className="p-2 bg-accent/20 rounded-lg icon-bounce hover:shadow-accent">
-                      <item.icon className="h-4 w-4 text-accent" />
+                    <div className="p-2 bg-accent/20 rounded-2xl">
+                      <item.icon className="h-5 w-5 text-accent" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium">{item.label}</p>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                      <p className="text-lg font-medium">{item.label}</p>
+                      <p className="text-base text-gray-700 dark:text-gray-300">{item.description}</p>
                     </div>
                   </div>
                 </Button>
@@ -180,24 +180,24 @@ export function SideMenu({ isOpen, onClose }: SideMenuProps) {
           </div>
 
           {/* Separator */}
-          <div className="border-t border-muted my-4" />
+          <div className="border-t border-gray-200 dark:border-gray-700 my-6" />
 
           {/* Batch 2 - Learning & Inspiration */}
-          <div className="space-y-2">
+          <div className="space-y-3">
             {menuItemsBatch2.map((item) => (
               <div key={item.label}>
                 <Button
                   variant="ghost"
                   onClick={() => handleNavigation(item.to)}
-                  className="w-full justify-start h-auto p-4 text-left btn-interactive hover:bg-gradient-primary/10 color-shift-primary ripple-effect"
+                  className="w-full justify-start h-auto p-4 text-left rounded-2xl hover:bg-primary/10 hover:scale-105 transition-all ease-in-out duration-200"
                 >
                   <div className="flex items-start space-x-3">
-                    <div className="p-2 bg-primary/20 rounded-lg icon-bounce hover:shadow-glow">
-                      <item.icon className="h-4 w-4 text-primary" />
+                    <div className="p-2 bg-primary/20 rounded-2xl">
+                      <item.icon className="h-5 w-5 text-primary" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium">{item.label}</p>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                      <p className="text-lg font-medium">{item.label}</p>
+                      <p className="text-base text-gray-700 dark:text-gray-300">{item.description}</p>
                     </div>
                   </div>
                 </Button>
