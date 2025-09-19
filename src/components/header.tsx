@@ -46,7 +46,7 @@ export function Header({ onLevelUpClick }: HeaderProps) {
               <div className="flex items-center gap-3">
                 <Button 
                   onClick={handleCompeteClick}
-                  className="bg-gradient-primary hover:bg-gradient-primary/90 text-white font-medium hover:scale-105 hover:shadow-glow transition-all duration-300 active:scale-95 ripple-effect hover-scale animate-fade-in"
+                  className="bg-gradient-accent hover:bg-gradient-accent/90 text-white font-medium hover:scale-105 hover:shadow-elegant transition-all duration-300 active:scale-95 ripple-effect hover-scale animate-fade-in"
                   size="sm"
                 >
                   <Zap className="mr-2 h-4 w-4 animate-pulse" />
