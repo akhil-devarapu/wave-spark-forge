@@ -175,18 +175,19 @@ export default function Generate() {
                     >
                       Generate Certificate
                     </Button>
-                    <Button 
-                      variant="ghost" 
-                      onClick={() => {
-                        setShowCertificateBanner(false);
-                        navigate('/learning');
-                      }}
-                      className="text-white hover:bg-white/10"
-                    >
-                      Close
-                    </Button>
                   </div>
                 </div>
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  onClick={() => {
+                    setShowCertificateBanner(false);
+                    navigate('/learning');
+                  }}
+                  className="text-white hover:bg-white/10 ml-4"
+                >
+                  ×
+                </Button>
               </div>
             </CardContent>
           </Card>
