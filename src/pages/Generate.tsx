@@ -295,6 +295,29 @@ export default function Generate() {
                 <label className="text-sm font-medium">Project Link</label>
                 <Input placeholder="https://github.com/..." className="mt-1" />
               </div>
+
+              {/* Impact Metrics */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium">Minutes Saved per Week</label>
+                  <Input type="number" placeholder="e.g. 120" className="mt-1" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Cost Reduced (%)</label>
+                  <Input type="number" placeholder="e.g. 25" className="mt-1" />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-sm font-medium">Output Improvement (%)</label>
+                  <Input type="number" placeholder="e.g. 40" className="mt-1" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium">Quality Improved (%)</label>
+                  <Input type="number" placeholder="e.g. 35" className="mt-1" />
+                </div>
+              </div>
               
               <div className="flex space-x-3 pt-4">
                 <Button type="submit" className="flex-1 bg-gradient-primary hover:opacity-90">
