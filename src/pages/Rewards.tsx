@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -44,6 +45,9 @@ const milestones = [
 ];
 
 export default function Rewards() {
+  const [showClaimBanner, setShowClaimBanner] = useState(false);
+  const [claimedReward, setClaimedReward] = useState<any>(null);
+  
   const currentPoints = 1340;
   const nextMilestone = milestones.find(m => m.status === "locked");
   const currentLevel = milestones.find(m => m.status === "current");
@@ -51,7 +55,11 @@ export default function Rewards() {
   const pointsNeeded = nextMilestone ? nextMilestone.points - currentPoints : 0;
 
   const handleClaimReward = (rewardId: number) => {
-    toast.success("🎉 Reward claimed successfully!");
+    const reward = rewards.find(r => r.id === rewardId);
+    if (reward) {
+      setClaimedReward(reward);
+      setShowClaimBanner(true);
+    }
   };
 
   const handleDownloadCertificate = (title: string) => {
@@ -61,6 +69,67 @@ export default function Rewards() {
   return (
     <div className="min-h-screen bg-gradient-subtle">
       <div className="container mx-auto px-6 py-8 space-y-8">
+        
+        {/* Claim Reward Banner */}
+        {showClaimBanner && claimedReward && (
+          <Card className="border-success/20 bg-gradient-hero text-white shadow-glow">
+            <CardContent className="p-8">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Gift className="h-8 w-8" />
+                  <h2 className="text-2xl font-bold">🎉 Reward Claimed!</h2>
+                </div>
+                
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="flex items-center justify-center space-x-2 mb-2">
+                      <div className="text-2xl">{claimedReward.icon}</div>
+                      <span className="text-lg font-bold">{claimedReward.title}</span>
+                    </div>
+                    <p className="text-sm opacity-90">Reward Type</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center space-x-2 mb-2">
+                      <Star className="h-5 w-5" />
+                      <span className="text-lg font-bold">+{claimedReward.points}</span>
+                    </div>
+                    <p className="text-sm opacity-90">Points Earned</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center space-x-2 mb-2">
+                      <Trophy className="h-5 w-5" />
+                      <span className="text-lg font-bold">Level {currentLevel?.level}</span>
+                    </div>
+                    <p className="text-sm opacity-90">Current Level</p>
+                  </div>
+                </div>
+
+                <div className="text-center">
+                  <p className="text-lg mb-4 opacity-90">{claimedReward.description}</p>
+                  <div className="flex justify-center space-x-3">
+                    <Button 
+                      onClick={() => setShowClaimBanner(false)}
+                      variant="secondary" 
+                      className="bg-white text-primary hover:bg-white/90"
+                    >
+                      Continue Exploring
+                    </Button>
+                    {claimedReward.type === "voucher" && (
+                      <Button 
+                        onClick={() => handleDownloadCertificate(claimedReward.title)}
+                        variant="secondary" 
+                        className="bg-white/10 text-white hover:bg-white/20 border border-white/20"
+                      >
+                        <Download className="mr-2 h-4 w-4" />
+                        Download
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
         
         {/* Header */}
         <div className="text-center space-y-4">
