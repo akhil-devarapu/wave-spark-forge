@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Trophy, Medal, Award, ArrowRight, Calendar, Users, Star } from "lucide-react";
+import { Trophy, Medal, Award, ArrowRight, Calendar, Users, Star, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ContestBanner } from "@/components/contest-banner";
 const categories = ["automation", "fullstack product", "automation+ui"];
@@ -97,7 +97,10 @@ export default function Compete() {
         
         {/* Compete Section */}
         <section className="space-y-8 max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center">Join the Contest</h2>
+          <h2 className="text-3xl font-bold text-center flex items-center justify-center gap-3">
+            <Zap className="h-8 w-8 text-primary" />
+            Compete
+          </h2>
           
           {/* Animated Contest Banner */}
           <ContestBanner title="Global AI Competition 2024" subtitle="Compete with the world's best AI developers" date="Dec 15, 2024 - Jan 15, 2025" location="Virtual Event" participants={2847} prize="$50,000" status="upcoming" registrationOpen={true} categories={categories} selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} onJoinContest={handleJoinContest} showInstructions={showInstructions} />
