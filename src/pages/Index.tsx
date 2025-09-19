@@ -93,15 +93,9 @@ const Index = ({}: IndexProps) => {
                   <div className="flex items-center space-x-4 bg-gradient-accent/10 rounded-lg p-4 flex-shrink-0 hover:bg-gradient-accent/20 transition-all duration-300 color-shift-primary">
                     <Trophy className="h-6 w-6 text-primary icon-bounce" />
                     <div>
-                      <h3 className="font-semibold mb-3">Contest</h3>
-                      <div className="flex space-x-3">
-                        <div className="bg-primary/10 border border-primary/20 rounded-lg px-3 py-2">
-                          <p className="text-xs font-medium text-primary">Dec 15, 2024 - Jan 15, 2025</p>
-                        </div>
-                        <div className="bg-secondary/50 border border-secondary rounded-lg px-3 py-2">
-                          <p className="text-xs font-medium">247 slots left</p>
-                        </div>
-                      </div>
+                      <h3 className="font-semibold">Contest</h3>
+                      <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
+                      <p className="text-xs text-muted-foreground">247 slots left</p>
                     </div>
                   </div>
 
