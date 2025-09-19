@@ -30,14 +30,14 @@ export function Header({ onLevelUpClick }: HeaderProps) {
     <>
       <header className="w-full border-b bg-background/80 backdrop-blur-md sticky top-0 z-50">
         <div className="container mx-auto px-6">
-          <div className="flex h-20 items-center">
+          <div className="flex h-24 items-center">
             {/* Logo - Left */}
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center hover:opacity-80 transition-smooth">
                 <img 
                   src={nxtWaveLogo} 
                   alt="NXT WAVE" 
-                  className="h-10 w-auto"
+                  className="h-14 w-auto"
                 />
               </Link>
             </div>
