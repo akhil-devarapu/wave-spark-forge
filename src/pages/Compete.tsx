@@ -3,34 +3,50 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { Trophy, Medal, Award, ArrowRight, Calendar, Users } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Trophy, Medal, Award, ArrowRight, Calendar, Users, Eye, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 const categories = ["automation", "fullstack product", "automation+ui"];
 const leaderboard = [{
   name: "Sarah Chen",
   score: 2840,
   projects: 12,
-  rank: 1
+  rank: 1,
+  avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b5c4?w=150&h=150&fit=crop&crop=face",
+  level: "AI Expert",
+  status: "online"
 }, {
   name: "Alex Rodriguez",
   score: 2650,
   projects: 10,
-  rank: 2
+  rank: 2,
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+  level: "ML Master",
+  status: "online"
 }, {
   name: "Jamie Kim",
   score: 2480,
   projects: 9,
-  rank: 3
+  rank: 3,
+  avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face",
+  level: "Data Wizard",
+  status: "away"
 }, {
   name: "Morgan Davis",
   score: 2320,
   projects: 8,
-  rank: 4
+  rank: 4,
+  avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+  level: "Tech Lead",
+  status: "online"
 }, {
   name: "Taylor Swift",
   score: 2180,
   projects: 7,
-  rank: 5
+  rank: 5,
+  avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+  level: "Innovator",
+  status: "offline"
 }];
 const topProducts = [{
   id: 1,
@@ -57,9 +73,22 @@ const topProducts = [{
 export default function Compete() {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [showInstructions, setShowInstructions] = useState(false);
+  const [selectedUser, setSelectedUser] = useState<null | typeof leaderboard[0]>(null);
   const handleJoinContest = () => {
     if (!selectedCategory) return;
     setShowInstructions(true);
+  };
+
+  const handleAvatarClick = (user: typeof leaderboard[0]) => {
+    setSelectedUser(selectedUser?.name === user.name ? null : user);
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'online': return 'bg-green-500';
+      case 'away': return 'bg-yellow-500';
+      default: return 'bg-gray-400';
+    }
   };
   return <div className="min-h-screen bg-gradient-subtle">
       <div className="container mx-auto px-6 py-8 space-y-12">
@@ -140,20 +169,83 @@ export default function Compete() {
             <Card className="shadow-medium max-w-4xl mx-auto">
               <CardContent className="p-0">
                 <div className="space-y-0">
-                  {leaderboard.map((user, index) => <div key={user.name} className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-smooth ${index < leaderboard.length - 1 ? 'border-b' : ''}`}>
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-primary text-white font-bold">
-                          {user.rank <= 3 ? user.rank === 1 ? <Trophy className="h-5 w-5" /> : user.rank === 2 ? <Medal className="h-5 w-5" /> : <Award className="h-5 w-5" /> : user.rank}
+                  {leaderboard.map((user, index) => (
+                    <div key={user.name}>
+                      <div className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-smooth cursor-pointer ${index < leaderboard.length - 1 ? 'border-b' : ''} ${selectedUser?.name === user.name ? 'bg-muted/50' : ''}`}>
+                        <div className="flex items-center space-x-4">
+                          {/* Rank Badge */}
+                          <div className="relative">
+                            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-primary text-white font-bold text-sm">
+                              {user.rank <= 3 ? (
+                                user.rank === 1 ? <Trophy className="h-4 w-4" /> : 
+                                user.rank === 2 ? <Medal className="h-4 w-4" /> : 
+                                <Award className="h-4 w-4" />
+                              ) : user.rank}
+                            </div>
+                          </div>
+
+                          {/* Interactive Avatar */}
+                          <div className="relative group">
+                            <Avatar 
+                              className="w-12 h-12 border-2 border-primary/20 hover:border-primary/60 transition-all duration-300 cursor-pointer hover:scale-110 hover:shadow-glow"
+                              onClick={() => handleAvatarClick(user)}
+                            >
+                              <AvatarImage src={user.avatar} alt={user.name} />
+                              <AvatarFallback className="bg-gradient-primary text-white font-semibold">
+                                {user.name.split(' ').map(n => n[0]).join('')}
+                              </AvatarFallback>
+                            </Avatar>
+                            {/* Status Indicator */}
+                            <div className={`absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-background ${getStatusColor(user.status)}`}></div>
+                            {/* Hover Effect */}
+                            <div className="absolute -inset-1 bg-gradient-primary/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+                          </div>
+
+                          {/* User Info */}
+                          <div>
+                            <div className="flex items-center space-x-2">
+                              <p className="font-medium">{user.name}</p>
+                              {user.rank <= 3 && <Star className="h-4 w-4 text-yellow-500" />}
+                            </div>
+                            <p className="text-sm text-muted-foreground">{user.projects} projects • {user.level}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="font-medium">{user.name}</p>
-                          <p className="text-sm text-muted-foreground">{user.projects} projects</p>
+                        
+                        <div className="flex items-center space-x-3">
+                          <Badge variant="secondary" className="text-lg font-bold px-3 py-1">
+                            {user.score.toLocaleString()}
+                          </Badge>
+                          <Button variant="ghost" size="sm" onClick={() => handleAvatarClick(user)}>
+                            <Eye className="h-4 w-4" />
+                          </Button>
                         </div>
                       </div>
-                      <Badge variant="secondary" className="text-lg font-bold px-3 py-1">
-                        {user.score.toLocaleString()}
-                      </Badge>
-                    </div>)}
+
+                      {/* Expanded User Details */}
+                      {selectedUser?.name === user.name && (
+                        <div className="px-6 pb-4 bg-muted/20 border-b animate-fade-in">
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+                            <div className="text-center">
+                              <p className="text-2xl font-bold text-primary">{user.projects}</p>
+                              <p className="text-sm text-muted-foreground">Projects</p>
+                            </div>
+                            <div className="text-center">
+                              <p className="text-2xl font-bold text-primary">{Math.floor(user.score / user.projects)}</p>
+                              <p className="text-sm text-muted-foreground">Avg Score</p>
+                            </div>
+                            <div className="text-center">
+                              <p className="text-2xl font-bold text-primary capitalize">{user.status}</p>
+                              <p className="text-sm text-muted-foreground">Status</p>
+                            </div>
+                          </div>
+                          <div className="flex justify-center mt-4 space-x-2">
+                            <Button size="sm" variant="outline">View Profile</Button>
+                            <Button size="sm">Follow</Button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </CardContent>
             </Card>
