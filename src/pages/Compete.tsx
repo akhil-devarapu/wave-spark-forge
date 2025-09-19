@@ -76,7 +76,6 @@ export default function Compete() {
                     <div>
                       <h3 className="font-semibold">Contest</h3>
                       <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
-                      <p className="text-xs text-muted-foreground">247 slots left</p>
                     </div>
                   </div>
 
@@ -94,6 +93,15 @@ export default function Compete() {
                         ))}
                       </SelectContent>
                     </Select>
+                  </div>
+
+                  {/* Slots Available */}
+                  <div className="flex items-center space-x-2 bg-gradient-primary/10 rounded-lg p-3 border border-primary/20 hover:bg-gradient-primary/20 transition-all duration-300 animate-fade-in hover-scale">
+                    <Users className="h-5 w-5 text-primary animate-pulse" />
+                    <div className="text-center">
+                      <p className="text-sm font-semibold text-primary">247</p>
+                      <p className="text-xs text-muted-foreground">slots left</p>
+                    </div>
                   </div>
                 </div>
 
