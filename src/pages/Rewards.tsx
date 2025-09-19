@@ -177,7 +177,7 @@ export default function Rewards() {
         {/* Milestones */}
         <Card className="shadow-medium">
           <CardHeader>
-            <CardTitle>Level Milestones</CardTitle>
+            <CardTitle>Rewards and Levels</CardTitle>
             <CardDescription>Your progression through the GenAI mastery levels</CardDescription>
           </CardHeader>
           <CardContent>
