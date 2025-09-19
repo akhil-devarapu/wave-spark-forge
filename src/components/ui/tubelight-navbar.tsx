@@ -68,11 +68,17 @@ export function NavBar({ items, className }: NavBarProps) {
                 {item.name === "Compete" && (
                   <span className="text-primary">⚡</span>
                 )}
+                {item.name === "Level Up" && (
+                  <span className="text-primary">📈</span>
+                )}
                 {item.name}
               </span>
               <span className="md:hidden flex items-center gap-1">
                 {item.name === "Compete" && (
                   <span className="text-primary">⚡</span>
+                )}
+                {item.name === "Level Up" && (
+                  <span className="text-primary">📈</span>
                 )}
                 <Icon size={18} strokeWidth={2.5} />
               </span>
