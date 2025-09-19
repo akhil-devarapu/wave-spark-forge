@@ -14,45 +14,41 @@ const AuroraBackground: React.FC<{ children?: React.ReactNode; className?: strin
   return (
     <div className={`relative min-h-screen overflow-hidden bg-background w-full ${className}`}>
       <div className="absolute inset-0">
-        <div className="absolute inset-0 opacity-70">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-900/40 via-purple-900/30 to-indigo-900/40"></div>
+        <div className="absolute inset-0 opacity-90">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-600/60 via-purple-600/50 to-indigo-600/60"></div>
         </div>
         
         <div className="absolute inset-0">
           <div 
-            className="absolute inset-0 opacity-60"
+            className="absolute inset-0 opacity-80 animate-aurora1"
             style={{
-              background: 'radial-gradient(ellipse 800px 600px at 50% 20%, hsl(var(--primary) / 0.3) 0%, transparent 50%)',
-              animation: 'aurora1 8s ease-in-out infinite alternate'
+              background: 'radial-gradient(ellipse 800px 600px at 50% 20%, rgba(59, 130, 246, 0.6) 0%, transparent 50%)'
             }}
           ></div>
           
           <div 
-            className="absolute inset-0 opacity-50"
+            className="absolute inset-0 opacity-70 animate-aurora2"
             style={{
-              background: 'radial-gradient(ellipse 600px 400px at 80% 30%, hsl(var(--secondary) / 0.4) 0%, transparent 50%)',
-              animation: 'aurora2 6s ease-in-out infinite alternate-reverse'
+              background: 'radial-gradient(ellipse 600px 400px at 80% 30%, rgba(139, 92, 246, 0.7) 0%, transparent 50%)'
             }}
           ></div>
           
           <div 
-            className="absolute inset-0 opacity-40"
+            className="absolute inset-0 opacity-60 animate-aurora3"
             style={{
-              background: 'radial-gradient(ellipse 700px 500px at 20% 60%, hsl(var(--accent) / 0.3) 0%, transparent 50%)',
-              animation: 'aurora3 10s ease-in-out infinite alternate'
+              background: 'radial-gradient(ellipse 700px 500px at 20% 60%, rgba(236, 72, 153, 0.5) 0%, transparent 50%)'
             }}
           ></div>
           
           <div 
-            className="absolute inset-0 opacity-30"
+            className="absolute inset-0 opacity-50 animate-aurora4"
             style={{
-              background: 'radial-gradient(ellipse 900px 300px at 60% 80%, hsl(var(--primary) / 0.2) 0%, transparent 50%)',
-              animation: 'aurora4 7s ease-in-out infinite alternate-reverse'
+              background: 'radial-gradient(ellipse 900px 300px at 60% 80%, rgba(34, 197, 94, 0.4) 0%, transparent 50%)'
             }}
           ></div>
         </div>
         
-        <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-background/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-background/20"></div>
       </div>
       
       <div className="relative z-10">
