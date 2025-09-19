@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Trophy, Medal, Award, ArrowRight, Calendar, Users, Eye, Star } from "lucide-react";
+import { Trophy, Medal, Award, ArrowRight, Calendar, Users, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 const categories = ["automation", "fullstack product", "automation+ui"];
 const leaderboard = [{
@@ -171,7 +171,7 @@ export default function Compete() {
                 <div className="space-y-0">
                   {leaderboard.map((user, index) => (
                     <div key={user.name}>
-                      <div className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-smooth cursor-pointer ${index < leaderboard.length - 1 ? 'border-b' : ''} ${selectedUser?.name === user.name ? 'bg-muted/50' : ''}`}>
+                      <div className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-smooth ${index < leaderboard.length - 1 ? 'border-b' : ''} ${selectedUser?.name === user.name ? 'bg-muted/50' : ''}`}>
                         <div className="flex items-center space-x-4">
                           {/* Rank Badge */}
                           <div className="relative">
@@ -184,11 +184,10 @@ export default function Compete() {
                             </div>
                           </div>
 
-                          {/* Interactive Avatar */}
+                          {/* Avatar */}
                           <div className="relative group">
                             <Avatar 
-                              className="w-12 h-12 border-2 border-primary/20 hover:border-primary/60 transition-all duration-300 cursor-pointer hover:scale-110 hover:shadow-glow"
-                              onClick={() => handleAvatarClick(user)}
+                              className="w-12 h-12 border-2 border-primary/20 transition-all duration-300"
                             >
                               <AvatarImage src={user.avatar} alt={user.name} />
                               <AvatarFallback className="bg-gradient-primary text-white font-semibold">
@@ -215,9 +214,6 @@ export default function Compete() {
                           <Badge variant="secondary" className="text-lg font-bold px-3 py-1">
                             {user.score.toLocaleString()}
                           </Badge>
-                          <Button variant="ghost" size="sm" onClick={() => handleAvatarClick(user)}>
-                            <Eye className="h-4 w-4" />
-                          </Button>
                         </div>
                       </div>
 
@@ -240,7 +236,6 @@ export default function Compete() {
                           </div>
                           <div className="flex justify-center mt-4 space-x-2">
                             <Button size="sm" variant="outline">View Profile</Button>
-                            <Button size="sm">Follow</Button>
                           </div>
                         </div>
                       )}
