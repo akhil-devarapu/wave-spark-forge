@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { Header } from "@/components/header";
+import { BackgroundComponent } from "@/components/ui/background";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -115,7 +116,7 @@ const AppContent = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <BackgroundComponent variant="aurora">
       <Header onLevelUpClick={handleLevelUpClick} />
       <Routes>
         <Route path="/" element={<Index />} />
@@ -181,7 +182,7 @@ const AppContent = () => {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+    </BackgroundComponent>
   );
 };
 
