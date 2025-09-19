@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Trophy, Calendar, MapPin, Users, Star, Award } from "lucide-react";
+import { Trophy, Calendar, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -111,9 +111,9 @@ export function ContestBanner({
       <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5" />
 
       {/* Content */}
-      <div className="relative z-10 p-8 md:p-12">
+      <div className="relative z-10 p-4 md:p-6">
         {/* Header with Status Badge */}
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex items-center justify-between mb-4">
           <motion.div
             className="flex items-center gap-3"
             initial={{ opacity: 0, x: -20 }}
@@ -121,9 +121,9 @@ export function ContestBanner({
             transition={{ duration: 0.6 }}
           >
             <div className="relative">
-              <Trophy className="w-8 h-8 text-primary" />
+              <Trophy className="w-6 h-6 text-primary" />
               <motion.div
-                className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full"
+                className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"
                 animate={{
                   scale: [1, 1.2, 1],
                   opacity: [1, 0.7, 1],
@@ -157,54 +157,31 @@ export function ContestBanner({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="text-2xl font-bold text-primary">{prize}</div>
-            <div className="text-sm text-muted-foreground">Total Prize Pool</div>
+            <div className="text-xl font-bold text-primary">{prize}</div>
+            <div className="text-xs text-muted-foreground">Total Prize Pool</div>
           </motion.div>
         </div>
 
-        {/* Main Title */}
-        <motion.div
-          className="mb-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3 leading-tight">
-            {title}
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground font-medium">
-            {subtitle}
-          </p>
-        </motion.div>
-
         {/* Contest Details */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <div className="flex items-center gap-3 p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50">
-            <Calendar className="w-5 h-5 text-primary" />
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50">
+            <Calendar className="w-4 h-4 text-primary" />
             <div>
-              <div className="font-semibold text-foreground">{date}</div>
-              <div className="text-sm text-muted-foreground">Event Date</div>
+              <div className="font-semibold text-foreground text-sm">{date}</div>
+              <div className="text-xs text-muted-foreground">Event Date</div>
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50">
-            <MapPin className="w-5 h-5 text-primary" />
+          <div className="flex items-center gap-3 p-3 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50">
+            <Users className="w-4 h-4 text-primary" />
             <div>
-              <div className="font-semibold text-foreground">{location}</div>
-              <div className="text-sm text-muted-foreground">Location</div>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 p-4 rounded-lg bg-background/50 backdrop-blur-sm border border-border/50">
-            <Users className="w-5 h-5 text-primary" />
-            <div>
-              <div className="font-semibold text-foreground">{participants.toLocaleString()}</div>
-              <div className="text-sm text-muted-foreground">Participants</div>
+              <div className="font-semibold text-foreground text-sm">{participants.toLocaleString()}</div>
+              <div className="text-xs text-muted-foreground">Participants</div>
             </div>
           </div>
         </motion.div>
@@ -212,12 +189,12 @@ export function ContestBanner({
         {/* Category Selection and Join Contest */}
         {categories.length > 0 && (
           <motion.div
-            className="flex flex-col lg:flex-row items-center gap-6 mb-6"
+            className="flex flex-col lg:flex-row items-center justify-center gap-4 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="w-full lg:w-80">
+            <div className="w-full lg:w-64">
               <Select value={selectedCategory} onValueChange={onCategoryChange}>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Choose category" />
@@ -232,8 +209,8 @@ export function ContestBanner({
               </Select>
             </div>
 
-            <div className="flex items-center space-x-2 bg-gradient-primary/10 rounded-lg p-3 border border-primary/20 hover:bg-gradient-primary/20 transition-all duration-300 animate-fade-in hover-scale">
-              <Users className="h-5 w-5 text-primary animate-pulse" />
+            <div className="flex items-center space-x-2 bg-primary/10 rounded-lg p-2 border border-primary/20 hover:bg-primary/20 transition-all duration-300">
+              <Users className="h-4 w-4 text-primary animate-pulse" />
               <div className="text-center">
                 <p className="text-sm font-semibold text-primary">247</p>
                 <p className="text-xs text-muted-foreground">slots left</p>
@@ -244,31 +221,22 @@ export function ContestBanner({
 
         {/* Action Buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-4"
+          className="flex justify-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
         >
           {registrationOpen && status !== "ended" && (
             <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-3 rounded-full"
+              size="default" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-6 py-2 rounded-full"
               onClick={onJoinContest}
               disabled={categories.length > 0 && !selectedCategory}
             >
-              <Award className="w-5 h-5 mr-2" />
+              <Award className="w-4 h-4 mr-2" />
               {status === "live" ? "Join Contest" : "Join Contest"}
             </Button>
           )}
-          
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-border hover:bg-accent hover:text-accent-foreground font-semibold px-8 py-3 rounded-full"
-          >
-            <Star className="w-5 h-5 mr-2" />
-            View Details
-          </Button>
         </motion.div>
 
         {/* Instructions */}
@@ -293,7 +261,7 @@ export function ContestBanner({
         )}
 
         {/* Floating Elements */}
-        <div className="absolute top-4 right-4 opacity-10">
+        <div className="absolute top-2 right-2 opacity-5">
           <motion.div
             animate={{
               rotate: 360,
@@ -304,7 +272,7 @@ export function ContestBanner({
               ease: "linear",
             }}
           >
-            <Trophy className="w-32 h-32 text-primary" />
+            <Trophy className="w-16 h-16 text-primary" />
           </motion.div>
         </div>
       </div>
