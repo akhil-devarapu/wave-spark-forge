@@ -93,8 +93,9 @@ const Index = ({}: IndexProps) => {
                   <div className="flex items-center space-x-4 bg-gradient-accent/10 rounded-lg p-4 flex-shrink-0 hover:bg-gradient-accent/20 transition-all duration-300 color-shift-primary">
                     <Trophy className="h-6 w-6 text-primary icon-bounce" />
                     <div>
-                      <h3 className="font-semibold">Next Contest</h3>
+                      <h3 className="font-semibold">Contest</h3>
                       <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
+                      <p className="text-xs text-muted-foreground">247 slots left</p>
                     </div>
                   </div>
 
@@ -102,7 +103,7 @@ const Index = ({}: IndexProps) => {
                   <div className="w-full sm:w-80 lg:w-96">
                     <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                       <SelectTrigger className="w-full btn-interactive ripple-effect">
-                        <SelectValue placeholder="Choose your expertise area" />
+                        <SelectValue placeholder="Choose category" />
                       </SelectTrigger>
                       <SelectContent>
                         {categories.map((category) => (
