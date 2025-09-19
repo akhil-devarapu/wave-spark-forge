@@ -136,58 +136,45 @@ export default function Generate() {
         {showCertificateBanner && (
           <Card className="border-primary/20 bg-gradient-hero text-white shadow-glow">
             <CardContent className="p-8">
-              <div className="flex items-start justify-between">
-                <div className="space-y-4 flex-1">
-                  <div className="flex items-center space-x-3">
-                    <Award className="h-8 w-8" />
-                    <h2 className="text-2xl font-bold">Generate Certificate</h2>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3">
+                  <Award className="h-8 w-8" />
+                  <h2 className="text-2xl font-bold">Generate Certificate</h2>
+                </div>
+                
+                <div className="grid md:grid-cols-3 gap-6">
+                  <div className="text-center">
+                    <div className="flex items-center justify-center space-x-2 mb-2">
+                      <Star className="h-5 w-5" />
+                      <span className="text-lg font-bold">Level {userData.level}</span>
+                    </div>
+                    <p className="text-sm opacity-90">Current Level</p>
                   </div>
-                  
-                  <div className="grid md:grid-cols-3 gap-6">
-                    <div className="text-center">
-                      <div className="flex items-center justify-center space-x-2 mb-2">
-                        <Star className="h-5 w-5" />
-                        <span className="text-lg font-bold">Level {userData.level}</span>
-                      </div>
-                      <p className="text-sm opacity-90">Current Level</p>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center space-x-2 mb-2">
+                      <Upload className="h-5 w-5" />
+                      <span className="text-lg font-bold">{userData.totalProjects}</span>
                     </div>
-                    <div className="text-center">
-                      <div className="flex items-center justify-center space-x-2 mb-2">
-                        <Upload className="h-5 w-5" />
-                        <span className="text-lg font-bold">{userData.totalProjects}</span>
-                      </div>
-                      <p className="text-sm opacity-90">Projects Built</p>
-                    </div>
-                    <div className="text-center">
-                      <div className="flex items-center justify-center space-x-2 mb-2">
-                        <Trophy className="h-5 w-5" />
-                        <span className="text-lg font-bold">{userData.contestsParticipated}</span>
-                      </div>
-                      <p className="text-sm opacity-90">Contests Joined</p>
-                    </div>
+                    <p className="text-sm opacity-90">Projects Built</p>
                   </div>
-
-                  <div className="flex space-x-3">
-                    <Button 
-                      onClick={handleGenerateCertificate}
-                      variant="secondary" 
-                      className="bg-white text-primary hover:bg-white/90"
-                    >
-                      Generate Certificate
-                    </Button>
+                  <div className="text-center">
+                    <div className="flex items-center justify-center space-x-2 mb-2">
+                      <Trophy className="h-5 w-5" />
+                      <span className="text-lg font-bold">{userData.contestsParticipated}</span>
+                    </div>
+                    <p className="text-sm opacity-90">Contests Joined</p>
                   </div>
                 </div>
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  onClick={() => {
-                    setShowCertificateBanner(false);
-                    navigate('/learning');
-                  }}
-                  className="text-white hover:bg-white/10 ml-4"
-                >
-                  ×
-                </Button>
+
+                <div className="flex space-x-3">
+                  <Button 
+                    onClick={handleGenerateCertificate}
+                    variant="secondary" 
+                    className="bg-white text-primary hover:bg-white/90"
+                  >
+                    Generate Certificate
+                  </Button>
+                </div>
               </div>
             </CardContent>
           </Card>
