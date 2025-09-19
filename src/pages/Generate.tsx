@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ import { toast } from "sonner";
 export default function Generate() {
   const [showCertificateBanner, setShowCertificateBanner] = useState(false);
   const [showUploadForm, setShowUploadForm] = useState(false);
+  const navigate = useNavigate();
   
   // Mock user data
   const userData = {
@@ -175,7 +177,10 @@ export default function Generate() {
                     </Button>
                     <Button 
                       variant="ghost" 
-                      onClick={() => setShowCertificateBanner(false)}
+                      onClick={() => {
+                        setShowCertificateBanner(false);
+                        navigate('/learning');
+                      }}
                       className="text-white hover:bg-white/10"
                     >
                       Close
