@@ -163,8 +163,8 @@ export default function Compete() {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-2xl font-bold mb-2">Top Products</h3>
-                <p className="text-muted-foreground">Outstanding AI solutions from our community</p>
+                <h3 className="text-2xl font-bold mb-2">Builds of the Month</h3>
+                <p className="text-muted-foreground">Outstanding AI products across our company</p>
               </div>
               <Link to="/products">
                 <Button variant="outline" className="hover:bg-primary hover:text-primary-foreground transition-smooth">
