@@ -74,8 +74,9 @@ export default function Compete() {
                   <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0">
                     <Trophy className="h-6 w-6 text-primary" />
                     <div>
-                      <h3 className="font-semibold">Next Contest</h3>
+                      <h3 className="font-semibold">Contest</h3>
                       <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
+                      <p className="text-xs text-muted-foreground">247 slots left</p>
                     </div>
                   </div>
 
@@ -83,7 +84,7 @@ export default function Compete() {
                   <div className="w-full sm:w-80 lg:w-96">
                     <Select value={selectedCategory} onValueChange={setSelectedCategory}>
                       <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Choose your expertise area" />
+                        <SelectValue placeholder="Choose category" />
                       </SelectTrigger>
                       <SelectContent>
                         {categories.map((category) => (
