@@ -27,7 +27,7 @@ export function Header({ onLevelUpClick }: HeaderProps) {
 
   return (
     <>
-      <header className="w-full border-b border-gray-200 dark:border-gray-700 bg-background/80 backdrop-blur-md sticky top-0 z-50">
+      <header className="w-full border-b bg-background/80 backdrop-blur-md sticky top-0 z-50">
         <div className="container mx-auto px-6">
           <div className="flex h-20 items-center">
             {/* Logo - Left */}
@@ -46,20 +46,20 @@ export function Header({ onLevelUpClick }: HeaderProps) {
               <div className="flex items-center gap-3">
                 <Button 
                   onClick={handleCompeteClick}
-                  variant="outline"
-                  size="lg"
-                  className="bg-white hover:bg-primary hover:text-white text-primary border-primary font-medium"
+                  className="bg-white hover:bg-gray-50 text-gray-900 font-medium hover:scale-105 hover:shadow-elegant transition-all duration-300 active:scale-95 ripple-effect hover-scale animate-fade-in border border-gray-200"
+                  size="sm"
                 >
-                  <Zap className="mr-2 h-4 w-4" />
+                  <Zap className="mr-2 h-4 w-4 animate-pulse" />
                   Compete
                 </Button>
                 
                 <Button 
                   onClick={onLevelUpClick}
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-white font-medium"
+                  variant="outline"
+                  className="bg-gradient-accent/10 hover:bg-gradient-accent hover:text-white font-medium hover:scale-105 hover:shadow-elegant transition-all duration-300 active:scale-95 border-2 border-accent/20 hover:border-accent ripple-effect hover-scale animate-fade-in"
+                  size="sm"
                 >
-                  <TrendingUp className="mr-2 h-4 w-4" />
+                  <TrendingUp className="mr-2 h-4 w-4 animate-pulse" />
                   Level Up
                 </Button>
               </div>
