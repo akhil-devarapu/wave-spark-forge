@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 
 interface NavItem {
   name: string
+  url?: string
   onClick?: () => void
   icon: LucideIcon
 }
