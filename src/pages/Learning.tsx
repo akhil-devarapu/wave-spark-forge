@@ -186,47 +186,77 @@ export default function Learning() {
           ))}
         </div>
 
-        {/* Additional Resources */}
+        {/* Search Tools Section */}
         <Card className="shadow-medium card-interactive">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Sparkles className="h-5 w-5 text-primary icon-bounce" />
-              <span>Stay Updated</span>
+              <span>Search Tools</span>
             </CardTitle>
             <CardDescription>
-              The AI landscape is evolving rapidly. Here are some resources to stay informed about the latest developments.
+              Discover the best AI tools for your needs with these comprehensive tool directories and discovery platforms.
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               <Button 
                 variant="outline" 
                 className="justify-start h-auto p-4 btn-interactive"
-                onClick={() => window.open('https://twitter.com/OpenAI', '_blank')}
+                onClick={() => window.open('https://www.producthunt.com/topics/artificial-intelligence', '_blank')}
               >
                 <div className="text-left">
-                  <div className="font-medium">OpenAI Updates</div>
-                  <div className="text-sm text-muted-foreground">Latest from OpenAI</div>
+                  <div className="font-medium">Product Hunt AI</div>
+                  <div className="text-sm text-muted-foreground">Latest AI tool launches</div>
                 </div>
               </Button>
               <Button 
                 variant="outline" 
                 className="justify-start h-auto p-4 btn-interactive"
-                onClick={() => window.open('https://www.anthropic.com/news', '_blank')}
+                onClick={() => window.open('https://www.futuretools.io/', '_blank')}
               >
                 <div className="text-left">
-                  <div className="font-medium">Anthropic News</div>
-                  <div className="text-sm text-muted-foreground">Claude developments</div>
+                  <div className="font-medium">Future Tools</div>
+                  <div className="text-sm text-muted-foreground">Curated AI tool collection</div>
                 </div>
               </Button>
               <Button 
                 variant="outline" 
                 className="justify-start h-auto p-4 btn-interactive"
-                onClick={() => window.open('https://airesearch.com', '_blank')}
+                onClick={() => window.open('https://theresanaiforthat.com/', '_blank')}
               >
                 <div className="text-left">
-                  <div className="font-medium">AI Research</div>
-                  <div className="text-sm text-muted-foreground">Latest papers & trends</div>
+                  <div className="font-medium">There's An AI For That</div>
+                  <div className="text-sm text-muted-foreground">Comprehensive AI database</div>
+                </div>
+              </Button>
+              <Button 
+                variant="outline" 
+                className="justify-start h-auto p-4 btn-interactive"
+                onClick={() => window.open('https://www.toolify.ai/', '_blank')}
+              >
+                <div className="text-left">
+                  <div className="font-medium">Toolify AI</div>
+                  <div className="text-sm text-muted-foreground">AI tools directory & reviews</div>
+                </div>
+              </Button>
+              <Button 
+                variant="outline" 
+                className="justify-start h-auto p-4 btn-interactive"
+                onClick={() => window.open('https://topai.tools/', '_blank')}
+              >
+                <div className="text-left">
+                  <div className="font-medium">TopAI Tools</div>
+                  <div className="text-sm text-muted-foreground">Top-rated AI applications</div>
+                </div>
+              </Button>
+              <Button 
+                variant="outline" 
+                className="justify-start h-auto p-4 btn-interactive"
+                onClick={() => window.open('https://www.aitoolnet.com/', '_blank')}
+              >
+                <div className="text-left">
+                  <div className="font-medium">AI Tool Net</div>
+                  <div className="text-sm text-muted-foreground">Discover & compare AI tools</div>
                 </div>
               </Button>
             </div>
