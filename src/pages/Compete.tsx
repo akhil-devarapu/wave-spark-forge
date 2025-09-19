@@ -79,16 +79,17 @@ export default function Compete() {
     if (!selectedCategory) return;
     setShowInstructions(true);
   };
-
   const handleAvatarClick = (user: typeof leaderboard[0]) => {
     setSelectedUser(selectedUser?.name === user.name ? null : user);
   };
-
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'online': return 'bg-green-500';
-      case 'away': return 'bg-yellow-500';
-      default: return 'bg-gray-400';
+      case 'online':
+        return 'bg-green-500';
+      case 'away':
+        return 'bg-yellow-500';
+      default:
+        return 'bg-gray-400';
     }
   };
   return <div className="min-h-screen bg-gradient-subtle">
@@ -96,24 +97,10 @@ export default function Compete() {
         
         {/* Compete Section */}
         <section className="space-y-8 max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center">Join the Competition</h2>
+          <h2 className="text-3xl font-bold text-center">Join the Contest</h2>
           
           {/* Animated Contest Banner */}
-          <ContestBanner
-            title="Global AI Competition 2024"
-            subtitle="Compete with the world's best AI developers"
-            date="Dec 15, 2024 - Jan 15, 2025"
-            location="Virtual Event"
-            participants={2847}
-            prize="$50,000"
-            status="upcoming"
-            registrationOpen={true}
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-            onJoinContest={handleJoinContest}
-            showInstructions={showInstructions}
-          />
+          <ContestBanner title="Global AI Competition 2024" subtitle="Compete with the world's best AI developers" date="Dec 15, 2024 - Jan 15, 2025" location="Virtual Event" participants={2847} prize="$50,000" status="upcoming" registrationOpen={true} categories={categories} selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory} onJoinContest={handleJoinContest} showInstructions={showInstructions} />
 
           {/* Leaderboard */}
           <div className="space-y-6">
@@ -125,26 +112,19 @@ export default function Compete() {
             <Card className="shadow-medium max-w-4xl mx-auto">
               <CardContent className="p-0">
                 <div className="space-y-0">
-                  {leaderboard.map((user, index) => (
-                    <div key={user.name}>
+                  {leaderboard.map((user, index) => <div key={user.name}>
                       <div className={`flex items-center justify-between p-6 hover:bg-muted/30 transition-smooth ${index < leaderboard.length - 1 ? 'border-b' : ''} ${selectedUser?.name === user.name ? 'bg-muted/50' : ''}`}>
                         <div className="flex items-center space-x-4">
                           {/* Rank Badge */}
                           <div className="relative">
                             <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-primary text-white font-bold text-sm">
-                              {user.rank <= 3 ? (
-                                user.rank === 1 ? <Trophy className="h-4 w-4" /> : 
-                                user.rank === 2 ? <Medal className="h-4 w-4" /> : 
-                                <Award className="h-4 w-4" />
-                              ) : user.rank}
+                              {user.rank <= 3 ? user.rank === 1 ? <Trophy className="h-4 w-4" /> : user.rank === 2 ? <Medal className="h-4 w-4" /> : <Award className="h-4 w-4" /> : user.rank}
                             </div>
                           </div>
 
                           {/* Avatar */}
                           <div className="relative group">
-                            <Avatar 
-                              className="w-12 h-12 border-2 border-primary/20 transition-all duration-300"
-                            >
+                            <Avatar className="w-12 h-12 border-2 border-primary/20 transition-all duration-300">
                               <AvatarImage src={user.avatar} alt={user.name} />
                               <AvatarFallback className="bg-gradient-primary text-white font-semibold">
                                 {user.name.split(' ').map(n => n[0]).join('')}
@@ -174,8 +154,7 @@ export default function Compete() {
                       </div>
 
                       {/* Expanded User Details */}
-                      {selectedUser?.name === user.name && (
-                        <div className="px-6 pb-4 bg-muted/20 border-b animate-fade-in">
+                      {selectedUser?.name === user.name && <div className="px-6 pb-4 bg-muted/20 border-b animate-fade-in">
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
                             <div className="text-center">
                               <p className="text-2xl font-bold text-primary">{user.projects}</p>
@@ -193,10 +172,8 @@ export default function Compete() {
                           <div className="flex justify-center mt-4 space-x-2">
                             <Button size="sm" variant="outline">View Profile</Button>
                           </div>
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                        </div>}
+                    </div>)}
                 </div>
               </CardContent>
             </Card>
