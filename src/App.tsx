@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Award, X } from "lucide-react";
+import { Award } from "lucide-react";
 import { toast } from "sonner";
 import Index from "./pages/Index";
 import Compete from "./pages/Compete";
@@ -39,7 +39,7 @@ const AppContent = () => {
 
   const handleCloseLevelUp = () => {
     setShowLevelUpPopup(false);
-    navigate("/generate");
+    navigate("/learning");
   };
 
   const handleGenerateCertificate = () => {
@@ -133,16 +133,8 @@ const AppContent = () => {
       {/* Level Up Popup - Now Global */}
       <Dialog open={showLevelUpPopup} onOpenChange={setShowLevelUpPopup}>
         <DialogContent className="max-w-md">
-          <DialogHeader className="relative">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setShowLevelUpPopup(false)}
-              className="absolute right-0 top-0 h-6 w-6 p-0"
-            >
-              <X className="h-4 w-4" />
-            </Button>
-            <DialogTitle className="flex justify-center pt-2">
+          <DialogHeader>
+            <DialogTitle className="flex justify-center">
               <Badge variant="default" className="text-xl px-6 py-3 bg-gradient-primary hover:opacity-90 transition-smooth shadow-lg">
                 🎉 Level 5 🎉
               </Badge>
