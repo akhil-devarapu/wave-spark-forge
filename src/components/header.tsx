@@ -2,6 +2,7 @@ import { Menu, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { SideMenu } from "./side-menu";
+import { NavBar } from "@/components/ui/tubelight-navbar";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import nxtWaveLogo from "@/assets/nxtwave-logo.png";
@@ -43,26 +44,13 @@ export function Header({ onLevelUpClick }: HeaderProps) {
 
             {/* Center Action Buttons */}
             <div className="flex-1 flex justify-center">
-              <div className="flex items-center gap-3">
-                <Button 
-                  onClick={handleCompeteClick}
-                  className="bg-white hover:bg-gray-50 text-gray-900 font-medium hover:scale-105 hover:shadow-elegant transition-all duration-300 active:scale-95 ripple-effect hover-scale animate-fade-in border border-gray-200"
-                  size="sm"
-                >
-                  <Zap className="mr-2 h-4 w-4 animate-pulse" />
-                  Compete
-                </Button>
-                
-                <Button 
-                  onClick={onLevelUpClick}
-                  variant="outline"
-                  className="bg-gradient-accent/10 hover:bg-gradient-accent hover:text-white font-medium hover:scale-105 hover:shadow-elegant transition-all duration-300 active:scale-95 border-2 border-accent/20 hover:border-accent ripple-effect hover-scale animate-fade-in"
-                  size="sm"
-                >
-                  <TrendingUp className="mr-2 h-4 w-4 animate-pulse" />
-                  Level Up
-                </Button>
-              </div>
+              <NavBar 
+                items={[
+                  { name: 'Compete', onClick: handleCompeteClick, icon: Zap },
+                  { name: 'Level Up', onClick: onLevelUpClick, icon: TrendingUp }
+                ]}
+                className="static transform-none mb-0 pt-0"
+              />
             </div>
 
             {/* Right Side Controls */}
