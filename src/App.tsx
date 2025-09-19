@@ -131,7 +131,10 @@ const AppContent = () => {
       </Routes>
 
       {/* Level Up Popup - Now Global */}
-      <Dialog open={showLevelUpPopup} onOpenChange={setShowLevelUpPopup}>
+      <Dialog open={showLevelUpPopup} onOpenChange={(open) => {
+        setShowLevelUpPopup(open);
+        if (!open) navigate("/learning");
+      }}>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="flex justify-center">
