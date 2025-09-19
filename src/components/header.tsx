@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Menu, Zap, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./theme-toggle";
 import { SideMenu } from "./side-menu";
@@ -46,18 +46,20 @@ export function Header({ onLevelUpClick }: HeaderProps) {
               <div className="flex items-center gap-3">
                 <Button 
                   onClick={handleCompeteClick}
-                  className="btn-primary-interactive text-white font-medium hover:scale-105 hover:shadow-glow transition-all duration-300 active:scale-95"
+                  className="bg-gradient-primary hover:bg-gradient-primary/90 text-white font-medium hover:scale-105 hover:shadow-glow transition-all duration-300 active:scale-95 ripple-effect hover-scale animate-fade-in"
                   size="sm"
                 >
+                  <Zap className="mr-2 h-4 w-4 animate-pulse" />
                   Compete
                 </Button>
                 
                 <Button 
                   onClick={onLevelUpClick}
                   variant="outline"
-                  className="btn-interactive hover:bg-primary hover:text-primary-foreground font-medium hover:scale-105 hover:shadow-elegant transition-all duration-300 active:scale-95 border-2"
+                  className="bg-gradient-accent/10 hover:bg-gradient-accent hover:text-white font-medium hover:scale-105 hover:shadow-elegant transition-all duration-300 active:scale-95 border-2 border-accent/20 hover:border-accent ripple-effect hover-scale animate-fade-in"
                   size="sm"
                 >
+                  <TrendingUp className="mr-2 h-4 w-4 animate-pulse" />
                   Level Up
                 </Button>
               </div>
