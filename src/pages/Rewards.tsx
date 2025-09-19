@@ -70,6 +70,70 @@ export default function Rewards() {
           </p>
         </div>
 
+        {/* Earned Rewards - Top Section */}
+        {rewards.filter(r => r.status === "earned").length > 0 && (
+          <div className="space-y-4">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-success">🎉 Congratulations!</h2>
+              <p className="text-lg text-muted-foreground">You've earned new rewards</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rewards
+                .filter(reward => reward.status === "earned")
+                .map((reward) => (
+                  <Card 
+                    key={reward.id} 
+                    className="hover:shadow-medium transition-smooth border-success/50 bg-success/5"
+                  >
+                    <CardHeader>
+                      <div className="flex items-center justify-between">
+                        <div className="text-2xl">{reward.icon}</div>
+                        <Badge variant="default" className="bg-success">
+                          Earned
+                        </Badge>
+                      </div>
+                      <CardTitle className="text-lg">{reward.title}</CardTitle>
+                      <CardDescription>{reward.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">Points:</span>
+                        <span className="font-bold text-success">+{reward.points}</span>
+                      </div>
+
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                          <Calendar className="h-4 w-4" />
+                          <span>Earned on {reward.earnedDate}</span>
+                        </div>
+                        <div className="flex space-x-2">
+                          <Button 
+                            size="sm" 
+                            className="flex-1 bg-success hover:bg-success/90"
+                            onClick={() => handleClaimReward(reward.id)}
+                          >
+                            <Gift className="h-4 w-4 mr-1" />
+                            Claim Now
+                          </Button>
+                          {reward.type === "voucher" && (
+                            <Button 
+                              size="sm" 
+                              variant="outline"
+                              onClick={() => handleDownloadCertificate(reward.title)}
+                            >
+                              <Download className="h-4 w-4" />
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
+          </div>
+        )}
+
         {/* Progress Overview */}
         <Card className="shadow-medium">
           <CardHeader>
@@ -149,90 +213,54 @@ export default function Rewards() {
           </CardContent>
         </Card>
 
-        {/* Rewards Grid */}
-        <div className="space-y-6">
-          <h2 className="text-2xl font-bold">Your Rewards</h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {rewards
-              .sort((a, b) => {
-                // Show earned/claimable rewards first
-                if (a.status === "earned" && b.status !== "earned") return -1;
-                if (b.status === "earned" && a.status !== "earned") return 1;
-                return 0;
-              })
-              .map((reward) => (
-              <Card 
-                key={reward.id} 
-                className={`hover:shadow-medium transition-smooth ${
-                  reward.status === "earned" ? "border-success/50" : ""
-                }`}
-              >
-                <CardHeader>
-                  <div className="flex items-center justify-between">
-                    <div className="text-2xl">{reward.icon}</div>
-                    <Badge 
-                      variant={
-                        reward.status === "earned" ? "default" :
-                        reward.status === "in-progress" ? "secondary" : "outline"
-                      }
-                    >
-                      {reward.status === "earned" ? "Earned" :
-                       reward.status === "in-progress" ? "In Progress" : "Locked"}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-lg">{reward.title}</CardTitle>
-                  <CardDescription>{reward.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">Points:</span>
-                    <span className="font-bold text-primary">+{reward.points}</span>
-                  </div>
-
-                  {reward.status === "earned" && (
-                    <div className="space-y-2">
-                      <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                        <Calendar className="h-4 w-4" />
-                        <span>Earned on {reward.earnedDate}</span>
-                      </div>
-                      <div className="flex space-x-2">
-                        <Button 
-                          size="sm" 
-                          variant="outline" 
-                          className="flex-1"
-                          onClick={() => handleClaimReward(reward.id)}
+        {/* Remaining Rewards */}
+        {rewards.filter(r => r.status !== "earned").length > 0 && (
+          <div className="space-y-6">
+            <h2 className="text-2xl font-bold">Available Rewards</h2>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {rewards
+                .filter(reward => reward.status !== "earned")
+                .map((reward) => (
+                  <Card 
+                    key={reward.id} 
+                    className="hover:shadow-medium transition-smooth"
+                  >
+                    <CardHeader>
+                      <div className="flex items-center justify-between">
+                        <div className="text-2xl">{reward.icon || "🎁"}</div>
+                        <Badge 
+                          variant={
+                            reward.status === "in-progress" ? "secondary" : "outline"
+                          }
                         >
-                          <Gift className="h-4 w-4 mr-1" />
-                          Claim
-                        </Button>
-                        {reward.type === "voucher" && (
-                          <Button 
-                            size="sm" 
-                            variant="ghost"
-                            onClick={() => handleDownloadCertificate(reward.title)}
-                          >
-                            <Download className="h-4 w-4" />
-                          </Button>
-                        )}
+                          {reward.status === "in-progress" ? "In Progress" : "Locked"}
+                        </Badge>
                       </div>
-                    </div>
-                  )}
+                      <CardTitle className="text-lg">{reward.title}</CardTitle>
+                      <CardDescription>{reward.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <div className="flex items-center justify-between text-sm">
+                        <span className="text-muted-foreground">Points:</span>
+                        <span className="font-bold text-primary">+{reward.points}</span>
+                      </div>
 
-                  {reward.status === "in-progress" && reward.progress && (
-                    <div className="space-y-2">
-                      <div className="flex justify-between text-sm">
-                        <span>Progress</span>
-                        <span>{reward.progress}%</span>
-                      </div>
-                      <Progress value={reward.progress} className="h-2" />
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
+                      {reward.status === "in-progress" && reward.progress && (
+                        <div className="space-y-2">
+                          <div className="flex justify-between text-sm">
+                            <span>Progress</span>
+                            <span>{reward.progress}%</span>
+                          </div>
+                          <Progress value={reward.progress} className="h-2" />
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
