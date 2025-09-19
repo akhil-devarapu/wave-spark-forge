@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useLocation } from "react-router-dom"
 
 interface NavItem {
   name: string
@@ -17,8 +18,18 @@ interface NavBarProps {
 }
 
 export function NavBar({ items, className }: NavBarProps) {
-  const [activeTab, setActiveTab] = useState(items[0].name)
   const [isMobile, setIsMobile] = useState(false)
+  const location = useLocation()
+
+  // Determine active tab based on current route
+  const getActiveTab = () => {
+    const pathname = location.pathname
+    if (pathname === "/compete") return "Compete"
+    if (pathname === "/generate") return "Level Up"
+    return null // No tab active for other routes
+  }
+
+  const activeTab = getActiveTab()
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,10 +56,7 @@ export function NavBar({ items, className }: NavBarProps) {
           return (
             <button
               key={item.name}
-              onClick={() => {
-                setActiveTab(item.name)
-                item.onClick?.()
-              }}
+              onClick={item.onClick}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
