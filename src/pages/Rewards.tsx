@@ -154,7 +154,14 @@ export default function Rewards() {
           <h2 className="text-2xl font-bold">Your Rewards</h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {rewards.map((reward) => (
+            {rewards
+              .sort((a, b) => {
+                // Show earned/claimable rewards first
+                if (a.status === "earned" && b.status !== "earned") return -1;
+                if (b.status === "earned" && a.status !== "earned") return 1;
+                return 0;
+              })
+              .map((reward) => (
               <Card 
                 key={reward.id} 
                 className={`hover:shadow-medium transition-smooth ${
