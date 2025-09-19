@@ -199,7 +199,7 @@ export default function Generate() {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>{userData.currentPoints} points</span>
-                    <span>{userData.nextLevelPoints} points (Next Level)</span>
+                    <span>Level 6</span>
                   </div>
                   <Progress value={progressPercentage} className="h-3" />
                   <p className="text-sm text-muted-foreground">
