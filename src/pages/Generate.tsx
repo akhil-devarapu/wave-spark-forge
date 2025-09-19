@@ -209,13 +209,21 @@ export default function Generate() {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex justify-center">
+              <div className="flex justify-center gap-4">
                 <Button 
                   onClick={handleLevelUp}
                   className="bg-gradient-primary hover:opacity-90 transition-smooth"
                 >
                   <Upload className="mr-2 h-4 w-4" />
                   Upload Project
+                </Button>
+                <Button 
+                  onClick={handleGenerateCertificate}
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                >
+                  <Award className="mr-2 h-4 w-4" />
+                  Generate Certificate
                 </Button>
               </div>
             </CardContent>
