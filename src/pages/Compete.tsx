@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Trophy, Medal, Award, ArrowRight, Calendar, Users, Star } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ContestBanner } from "@/components/contest-banner";
 const categories = ["automation", "fullstack product", "automation+ui"];
 const leaderboard = [{
   name: "Sarah Chen",
@@ -97,67 +98,22 @@ export default function Compete() {
         <section className="space-y-8 max-w-7xl mx-auto">
           <h2 className="text-3xl font-bold text-center">Join the Competition</h2>
           
-          {/* Join Contest */}
-          <Card className="w-full shadow-medium max-w-6xl mx-auto">
-            <CardContent className="p-6">
-              <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-                
-                {/* Contest Details & Category - Full Left */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 flex-1">
-                  <div className="flex items-center space-x-4 bg-muted/50 rounded-lg p-4 flex-shrink-0">
-                    <Trophy className="h-6 w-6 text-primary" />
-                    <div>
-                      <h3 className="font-semibold">Contest</h3>
-                      <p className="text-sm text-muted-foreground">Dec 15, 2024 - Jan 15, 2025</p>
-                    </div>
-                  </div>
-
-                  {/* Category Selection */}
-                  <div className="w-full sm:w-80 lg:w-96">
-                    <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Choose category" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {categories.map(category => <SelectItem key={category} value={category}>
-                            {category}
-                          </SelectItem>)}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* Slots Available */}
-                  <div className="flex items-center space-x-2 bg-gradient-primary/10 rounded-lg p-3 border border-primary/20 hover:bg-gradient-primary/20 transition-all duration-300 animate-fade-in hover-scale">
-                    <Users className="h-5 w-5 text-primary animate-pulse" />
-                    <div className="text-center">
-                      <p className="text-sm font-semibold text-primary">247</p>
-                      <p className="text-xs text-muted-foreground">slots left</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Join Button - Right */}
-                <div className="flex-shrink-0">
-                  <Button onClick={handleJoinContest} disabled={!selectedCategory} className="bg-gradient-primary hover:opacity-90 transition-smooth w-full sm:w-auto px-8">
-                    Join Contest
-                  </Button>
-                </div>
-              </div>
-
-              {showInstructions && <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
-                  <h4 className="font-medium mb-2">Contest Instructions</h4>
-                  <ul className="text-sm space-y-1 text-muted-foreground">
-                    <li>• Build an innovative AI solution in your chosen category</li>
-                    <li>• Submit before the deadline with proper documentation</li>
-                    <li>• Projects will be judged on innovation, impact, and technical excellence</li>
-                    <li>• Winners receive points, certificates, and exclusive rewards</li>
-                  </ul>
-                  <Button className="mt-3 w-full" size="sm">
-                    Confirm Participation
-                  </Button>
-                </div>}
-            </CardContent>
-          </Card>
+          {/* Animated Contest Banner */}
+          <ContestBanner
+            title="Global AI Competition 2024"
+            subtitle="Compete with the world's best AI developers"
+            date="Dec 15, 2024 - Jan 15, 2025"
+            location="Virtual Event"
+            participants={2847}
+            prize="$50,000"
+            status="upcoming"
+            registrationOpen={true}
+            categories={categories}
+            selectedCategory={selectedCategory}
+            onCategoryChange={setSelectedCategory}
+            onJoinContest={handleJoinContest}
+            showInstructions={showInstructions}
+          />
 
           {/* Leaderboard */}
           <div className="space-y-6">
