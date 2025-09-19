@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useLocation } from "react-router-dom"
+import nxtWaveLogo from "@/assets/nxtwave-logo.png"
 
 interface NavItem {
   name: string
@@ -63,8 +64,24 @@ export function NavBar({ items, className }: NavBarProps) {
                 isActive && "bg-muted text-primary",
               )}
             >
-              <span className="hidden md:inline">{item.name}</span>
-              <span className="md:hidden">
+              <span className="hidden md:flex items-center gap-2">
+                {item.name === "Compete" && (
+                  <img 
+                    src={nxtWaveLogo} 
+                    alt="NXT WAVE" 
+                    className="h-4 w-auto"
+                  />
+                )}
+                {item.name}
+              </span>
+              <span className="md:hidden flex items-center gap-1">
+                {item.name === "Compete" && (
+                  <img 
+                    src={nxtWaveLogo} 
+                    alt="NXT WAVE" 
+                    className="h-4 w-auto"
+                  />
+                )}
                 <Icon size={18} strokeWidth={2.5} />
               </span>
               {isActive && (
